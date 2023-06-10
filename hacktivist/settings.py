@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.gis",
     'hacktivist',
 ]
 
@@ -72,7 +73,7 @@ WSGI_APPLICATION = "hacktivist.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
+        "ENGINE": "django.contrib.gis.db.backends.postgis",
         "NAME": "hacktivistdb",
         "USER": "hacktivistdbuser",
         "PASSWORD": "hacktivistdbpass",
