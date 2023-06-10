@@ -1,7 +1,6 @@
 .scannerwork
 elasticsearch/*
 database/*
-docker-compose.yml
 .gitlab-ci.yml
 scripts/*.csv
 staticfiles

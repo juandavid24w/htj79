@@ -72,14 +72,16 @@ WSGI_APPLICATION = "hacktivist.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "hacktivistdb",
+        "USER": "hacktivistdbuser",
+        "PASSWORD": "hacktivistdbpass",
+        "HOST": "127.0.0.1",  # set in docker-compose.yml
+        "PORT": 5434,  # default postgres port
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

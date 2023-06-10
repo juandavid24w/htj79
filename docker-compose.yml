@@ -1,0 +1,33 @@
+version: "3"
+services:
+  hacktivist-db:
+    container_name: hacktivist-db
+    image: postgres:15-bullseye
+    volumes:
+      - ./database:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=hacktivistdbpass
+      - POSTGRES_USER=hacktivistdbuser
+      - POSTGRES_DB=hacktivistdb
+    ports:
+      - "5434:5432"
+    restart: always
+
+  hacktivist-nginx:
+    container_name: hacktivist-nginx
+    image: hacktivist-nginx
+    ports:
+      - "8543:80"
+    restart: always
+
+  hacktivist-webapp:
+    container_name: hacktivist-webapp
+    image: hacktivist-webapp
+    volumes:
+      - /datadrive/hacktivist-prod/media/:/code/media/
+      - /datadrive/hacktivist-prod/settings/:/code/django_project/prod/
+    ports:
+      - "8544:8000"
+    restart: always
+    environment:
+      - DJANGO_SETTINGS_MODULE=hacktivist.prod.settings

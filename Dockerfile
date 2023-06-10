@@ -13,7 +13,7 @@ COPY . .
 
 RUN apt update -y
 RUN apt upgrade -y
-RUN apt install -y build-essential python3-dev nano vim curl wkhtmltopdf graphviz python3-pygraphviz libgraphviz-dev
+RUN apt install -y build-essential python3-dev nano vim curl
 
 # Install dependencies
 COPY ./requirements.txt .

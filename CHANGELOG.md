@@ -6,3 +6,4 @@
 
 - Started the a fresh django-project
 - Added gitignore, LICENSE, CHANGELOG.md, requirements.txt, dockerignore, VERSION
+- Configure PSQL docker
