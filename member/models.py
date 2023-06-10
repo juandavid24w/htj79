@@ -20,7 +20,7 @@ class Members(AbstractUser, PermissionsMixin):
                                   on_delete=models.RESTRICT,
                                   verbose_name=_('Institution'))
     zip_code = models.CharField(max_length=5, default='+91')
-    contact = models.IntegerField(max_length=10)
+    contact = models.IntegerField()
     contact_full = models.CharField(max_length=15)
     blood_group = models.CharField(max_length=10, choices=BloodGroup.choices)
     address = models.TextField()

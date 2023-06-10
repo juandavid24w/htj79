@@ -14,6 +14,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+MEDIA_DIR = Path(BASE_DIR / 'media')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -23,6 +24,8 @@ SECRET_KEY = "django-insecure-0&07d2+rs1nb@#87hey!ui_i1z9p4u-pdozm3jc@a#z2h78$*9
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+AUTH_USER_MODEL = 'member.Members'
 
 ALLOWED_HOSTS = []
 
@@ -37,6 +40,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.gis",
     'hacktivist',
+    'institutions',
+    'glug',
+    'member',
 ]
 
 MIDDLEWARE = [
@@ -119,6 +125,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+
+# MEDIA_ROOT
+MEDIA_URL = "/media/"
+MEDIA_ROOT = MEDIA_DIR
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
