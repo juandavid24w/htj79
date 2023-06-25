@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.db import models
+from django.core.validators import FileExtensionValidator
 from django.utils.translation import gettext_lazy as _
 from uuid import uuid4
 from hacktivist.models import Gender, BloodGroup, Occupation, EducationalQualification
@@ -9,27 +10,43 @@ from hacktivist.models import Gender, BloodGroup, Occupation, EducationalQualifi
 
 class Members(AbstractUser, PermissionsMixin):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    dob = models.DateField(verbose_name=_('Date of Birth'))
+    dob = models.DateField(verbose_name=_('Date of Birth'),
+                           blank=True,
+                           null=True)
     gender = models.CharField(max_length=10,
                               choices=Gender.choices,
-                              verbose_name=_('Gender'))
+                              verbose_name=_('Gender'),
+                              blank=True)
     glug = models.ForeignKey('glug.GLUG',
                              on_delete=models.RESTRICT,
-                             verbose_name='GLUG')
+                             verbose_name='GLUG',
+                             blank=True,
+                             null=True)
     institute = models.ForeignKey('institutions.Institutions',
                                   on_delete=models.RESTRICT,
-                                  verbose_name=_('Institution'))
+                                  verbose_name=_('Institution'),
+                                  blank=True,
+                                  null=True)
     zip_code = models.CharField(max_length=5, default='+91')
-    contact = models.IntegerField()
+    contact = models.BigIntegerField(verbose_name=_('Contact'))
     contact_full = models.CharField(max_length=15)
-    blood_group = models.CharField(max_length=10, choices=BloodGroup.choices)
-    address = models.TextField()
-    display_pic = models.ImageField(default="default/user.png",
+    blood_group = models.CharField(max_length=10,
+                                   choices=BloodGroup.choices,
+                                   blank=True)
+    address = models.TextField(verbose_name=_('Address'), blank=True)
+    display_pic = models.ImageField(verbose_name=_('Profile picture'),
+                                    default="defaults/user.png",
                                     upload_to="users/display_pics/")
-    occupation = models.CharField(max_length=30, choices=Occupation.choices)
+    occupation = models.CharField(max_length=30,
+                                  choices=Occupation.choices,
+                                  blank=True)
     edu_qualification = models.CharField(
-        max_length=30, choices=EducationalQualification.choices)
-    stream = models.CharField(max_length=256)
+        max_length=30, choices=EducationalQualification.choices, blank=True)
+    stream = models.CharField(max_length=256, blank=True)
+    is_accept_TC = models.BooleanField(verbose_name=_('Terms & Conditions'),
+                                       default=False)
+    is_news_subscribed = models.BooleanField(
+        verbose_name=_('FOSS News updates'), default=False)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name} | {self.username}'
@@ -47,7 +64,7 @@ class ProofOfPayment(models.Model):
     )
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     transaction_id = models.BigIntegerField()
-    document = models.FileField(upload_to='users/payments/%Y/%m/%d/')
+    document = models.FileField(upload_to='users/payments/%Y/%m/%d/', validators=[FileExtensionValidator(allowed_extensions=['pdf', 'jpg', 'jpeg', 'png'])])
     is_verified = models.BooleanField(choices=VERIFY_CHOICES, default=0)
     verified_by = models.ForeignKey('member.Members',
                                     on_delete=models.RESTRICT)

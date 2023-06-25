@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load compress %} {% load static %}
+<html lang="en" class="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'src/tailwindcss/output.css' %}" />
+    {% endcompress %}
+  </head>
+  <body class="bg-green-50">
+    {% block content %} {% endblock %}
+    <section>{% include 'footer.html' %}</section>
+    {% compress js %}
+    <script src="{% static 'src/flowbite/flowbite.min.js' %}"></script>
+    {% endcompress %}
+  </body>
+</html>

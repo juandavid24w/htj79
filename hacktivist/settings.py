@@ -29,7 +29,7 @@ DEBUG = True
 
 AUTH_USER_MODEL = 'member.Members'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.gis",
-    'hacktivist',
+    'compressor',  # Third Party Apps
+    'hacktivist',  # Our Apps
     'institutions',
     'glug',
     'member',
@@ -62,7 +63,7 @@ ROOT_URLCONF = "hacktivist.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [TEMPLATES_DIR],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -126,11 +127,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_ROOT = Path(BASE_DIR / 'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    STATIC_DIR,
-]
+STATICFILES_DIRS = [STATIC_DIR]
+
+# Compressor settings
+COMPRESS_ROOT = BASE_DIR / 'static'
+COMPRESS_ENABLED = True
+STATICFILES_FINDERS = ('compressor.finders.CompressorFinder', )
 
 # MEDIA_ROOT
 MEDIA_ROOT = MEDIA_DIR
