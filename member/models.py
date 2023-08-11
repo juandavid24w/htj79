@@ -9,6 +9,13 @@ from hacktivist.models import Gender, BloodGroup, Occupation, EducationalQualifi
 
 
 class Members(AbstractUser, PermissionsMixin):
+    PROFILE_STATUS_CHOICES = (
+        (1, 'Profile Info'),
+        (2, 'Membership'),
+        (3, 'Payment Proof'),
+        (4, 'Proof Confirmation'),
+        (5, 'Success'),
+    )
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     dob = models.DateField(verbose_name=_('Date of Birth'),
                            blank=True,
@@ -29,7 +36,7 @@ class Members(AbstractUser, PermissionsMixin):
                                   null=True)
     zip_code = models.CharField(max_length=5, default='+91')
     contact = models.BigIntegerField(verbose_name=_('Contact'))
-    contact_full = models.CharField(max_length=15)
+    contact_full = models.CharField(max_length=15, null=True, blank=True)
     blood_group = models.CharField(max_length=10,
                                    choices=BloodGroup.choices,
                                    blank=True)
@@ -43,10 +50,20 @@ class Members(AbstractUser, PermissionsMixin):
     edu_qualification = models.CharField(
         max_length=30, choices=EducationalQualification.choices, blank=True)
     stream = models.CharField(max_length=256, blank=True)
+    profile_status = models.CharField(max_length=50,
+                                      verbose_name=_('Profile Status'),
+                                      choices=PROFILE_STATUS_CHOICES,
+                                      default=1)
     is_accept_TC = models.BooleanField(verbose_name=_('Terms & Conditions'),
                                        default=False)
     is_news_subscribed = models.BooleanField(
-        verbose_name=_('FOSS News updates'), default=False)
+        verbose_name=_('Hacktivist News updates'), default=False)
+
+    def save(self, *args, **kwargs):
+        if self.zip_code in ['+91', '0'] and len(str(
+                self.contact)) == 10 and str(self.contact).isnumeric():
+            self.contact_full = f'{self.zip_code}{self.contact}'
+            super(Members, self).save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name} | {self.username}'
@@ -64,7 +81,12 @@ class ProofOfPayment(models.Model):
     )
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     transaction_id = models.BigIntegerField()
-    document = models.FileField(upload_to='users/payments/%Y/%m/%d/', validators=[FileExtensionValidator(allowed_extensions=['pdf', 'jpg', 'jpeg', 'png'])])
+    document = models.FileField(
+        upload_to='users/payments/%Y/%m/%d/',
+        validators=[
+            FileExtensionValidator(
+                allowed_extensions=['pdf', 'jpg', 'jpeg', 'png'])
+        ])
     is_verified = models.BooleanField(choices=VERIFY_CHOICES, default=0)
     verified_by = models.ForeignKey('member.Members',
                                     on_delete=models.RESTRICT)

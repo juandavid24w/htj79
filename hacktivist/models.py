@@ -32,6 +32,26 @@ class Locations(models.Model):
         verbose_name_plural = _('locations')
 
 
+class Subscription(models.Model):
+    name = models.CharField(max_length=256,
+                            verbose_name=_('name'),
+                            help_text=_('Subscription name'))
+    price = models.IntegerField(verbose_name=_('Price'),
+                                help_text=_('Price for the subscriptions'))
+    created_at = models.DateTimeField(auto_now_add=True,
+                                      auto_created=True,
+                                      null=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.name} | {self.price}'
+
+    class Meta:
+        verbose_name = _('subscription')
+        verbose_name_plural = _('subscriptions')
+
+
+# Text Choices
 class Gender(models.TextChoices):
     man = 'Man', 'Man'
     woman = 'Woman', 'Woman'

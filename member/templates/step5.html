@@ -1,155 +1,23 @@
 {% extends "_mbase.html" %} {% block title %} Registration {% endblock %}
 {%block content%}
-<div class="flex flex-col min-h-screen bg-white dark:bg-gray-900">
+<meta http-equiv="refresh" content="5;url={% url 'home' %}" />
+<div
+  class="flex flex-col min-h-screen items-center justify-center bg-white dark:bg-gray-900"
+>
   <main class="bg-gray-50 dark:bg-gray-900">
-    <div class="py-8 px-6 md:h-screen">
-      <div class="flex flex-col md:flex-row gap-4">
-        <!-- stepper -->
-        <ol class="space-y-4 w-72 basis-1/6 mx-auto md:mx-0 md:my-auto">
-          <li>
-            <div
-              class="w-full p-4 text-green-700 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:border-green-800 dark:text-green-400"
-              role="alert"
-            >
-              <div class="flex items-center justify-between">
-                <span class="sr-only">Account</span>
-                <h3 class="font-medium">1. Account info</h3>
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div
-              class="w-full p-4 text-blue-700 bg-blue-100 border border-blue-300 rounded-lg dark:bg-gray-800 dark:border-blue-800 dark:text-blue-400"
-              role="alert"
-            >
-              <div class="flex items-center justify-between">
-                <span class="sr-only">Profile info</span>
-                <h3 class="font-medium">2. Profile info</h3>
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div
-              class="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-              role="alert"
-            >
-              <div class="flex items-center justify-between">
-                <span class="sr-only">Review</span>
-                <h3 class="font-medium">3. Review</h3>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div
-              class="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-              role="alert"
-            >
-              <div class="flex items-center justify-between">
-                <span class="sr-only">Payment</span>
-                <h3 class="font-medium">4. Payment</h3>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div
-              class="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-              role="alert"
-            >
-              <div class="flex items-center justify-between">
-                <span class="sr-only">Confirmation</span>
-                <h3 class="font-medium">5. Confirmation</h3>
-              </div>
-            </div>
-          </li>
-        </ol>
-        <!-- endstepper -->
-
-        <div
-          class="basis-4/6 flex flex-col m-auto justify-center items-center w-full bg-white rounded-lg shadow lg:flex md:mt-0 lg:max-w-screen-sm xl:p-0 dark:bg-gray-800"
-        >
-          <div class="p-6 w-full sm:p-8 lg:p-10">
-            <h1
-              class="mb-3 text-2xl font-bold text-gray-900 lg:text-3xl dark:text-white"
-            >
-              Complete your profile
-            </h1>
-            <form
-              class="mt-8"
-              data-bitwarden-watching="1"
-              method="post"
-              action=""
-            >
-              <div class="mb-6">
-                <label
-                  for="email"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >GLUG</label
-                >
-                {{form.glug}}
-              </div>
-              <div class="mb-6">
-                <label
-                  for="contact"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >Occupation</label
-                >
-                {{form.occupation}}
-              </div>
-              <div class="mb-6">
-                <label
-                  for="password"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >Educational Qualification</label
-                >
-                {{form.edu_qualification}}
-              </div>
-              <!-- <div class="mb-6">
-                <label
-                  for="message"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >Address</label
-                >
-                {{form.address}}
-              </div> -->
-              <button
-                class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-blue-700"
-                type="submit"
-              >
-                <span class="flex justify-center items-center"
-                  >Save & Continue</span
-                >
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+    <a
+      class="block max-w-lg p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+    >
+      <h5
+        class="mb-2 text-xl font-bold tracking-tight text-blue-700 dark:text-blue-500"
+      >
+        Confirmation
+      </h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400">
+        Your payment will be verified shortly by our team, Your free to explore.
+        You wil be redirected in 5 secs...
+      </p>
+    </a>
   </main>
 </div>
 {% endblock %}

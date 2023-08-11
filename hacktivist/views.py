@@ -23,7 +23,7 @@ def signin(request):
                                         password=password)
                     if user is not None:
                         login(request, user)
-                        return redirect('/')
+                        return redirect(resolve_url('home'))
             return render(request,
                           template_name='_base.html',
                           context={
@@ -38,4 +38,4 @@ def signin(request):
 
 def signout(request):
     logout(request)
-    return redirect(resolve_url('signin'))
+    return redirect(resolve_url('home'))

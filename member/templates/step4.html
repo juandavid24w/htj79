@@ -131,6 +131,7 @@
               method="post"
               action=""
             >
+              {% csrf_token %}
               <div class="mb-6">
                 <label
                   for="email"
@@ -154,33 +155,16 @@
                   class="mt-1 text-sm text-gray-500 dark:text-gray-300"
                   id="doc_help"
                 >
-                  Upload the screenshot of the payment. Support file format pdf, jpeg, png.
+                  Upload the screenshot of the payment. Support file format pdf,
+                  jpeg, png.
                 </div>
                 {{form.document}}
               </div>
-              <div class="mb-6">
-                <label
-                  for="password"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >Educational Qualification</label
-                >
-                {{form.edu_qualification}}
-              </div>
-              <!-- <div class="mb-6">
-                <label
-                  for="message"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >Address</label
-                >
-                {{form.address}}
-              </div> -->
               <button
                 class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-blue-700"
                 type="submit"
               >
-                <span class="flex justify-center items-center"
-                  >Save & Continue</span
-                >
+                <span class="flex justify-center items-center">Verify</span>
               </button>
             </form>
           </div>

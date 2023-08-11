@@ -27,8 +27,6 @@ SECRET_KEY = "django-insecure-0&07d2+rs1nb@#87hey!ui_i1z9p4u-pdozm3jc@a#z2h78$*9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-AUTH_USER_MODEL = 'member.Members'
-
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -41,8 +39,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.gis",
-    'compressor',  # Third Party Apps
-    'hacktivist',  # Our Apps
+    # Third Party Apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'compressor',
+    # Our Apps
+    'hacktivist',
     'institutions',
     'glug',
     'member',
@@ -75,6 +78,16 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTH_USER_MODEL = 'member.Members'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+LOGIN_REDIRECT_URL = 'signin'
+LOGOUT_REDIRECT_URL = 'signin'
 
 WSGI_APPLICATION = "hacktivist.wsgi.application"
 
@@ -143,3 +156,11 @@ MEDIA_URL = "hacktivist/media/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+PASSWORD_HASHERS = [
+    "django.contrib.auth.hashers.Argon2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
+    "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
+    "django.contrib.auth.hashers.ScryptPasswordHasher",
+]
