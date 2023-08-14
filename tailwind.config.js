@@ -37,6 +37,9 @@ module.exports = {
       },
     },
   },
+  corePlugins: {
+    aspectRatio: false,
+  },
   variants: {
     fill: [],
     extend: {
