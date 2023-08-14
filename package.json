@@ -1,4 +1,10 @@
 {
+  "name": "hacktivist",
+  "version": "0.0.1",
+  "scripts": {
+    "watchcss": "npx tailwindcss -i ./static/src/tailwindcss/input.css -o ./static/src/tailwindcss/main.css --watch",
+    "optcss": "npx tailwindcss -i ./static/src/tailwindcss/input.css -o ./static/src/tailwindcss/main.css --minify"
+  },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/container-queries": "^0.1.1",
