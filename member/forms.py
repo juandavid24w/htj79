@@ -1,4 +1,5 @@
 from django import forms
+from member.models import Members
 from glug.models import GLUG
 from institutions.models import Institutions
 from hacktivist.models import Occupation, EducationalQualification
@@ -34,7 +35,7 @@ class LoginForm(forms.Form):
             }))
 
 
-class UserCreationForm(forms.Form):
+class UserCreationForm(forms.ModelForm):
     first_name = forms.CharField(
         label='',
         required=True,
@@ -113,6 +114,19 @@ class UserCreationForm(forms.Form):
                 'w-4 h-4 bg-gray-50 rounded border-gray-300 focus:ring-3 focus:ring-blue-300 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600'
             }))
 
+    class Meta:
+        model = Members
+        fields = [
+            'first_name',
+            'last_name',
+            'username',
+            'email',
+            'contact',
+            'password',
+            'confirm_password',
+            'is_accept_TC',
+        ]
+
 
 class ProfileCompletionForm(forms.Form):
     glug = forms.ModelChoiceField(
@@ -174,6 +188,7 @@ class PaymentForm(forms.Form):
                 'class':
                 'rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
             }))
+
 
 class ResetPasswordForm(forms.Form):
     pass
