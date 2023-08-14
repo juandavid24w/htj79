@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+#################
+### Path Dirs ###
+#################
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = Path(BASE_DIR / 'templates')
@@ -79,9 +82,6 @@ TEMPLATES = [
     },
 ]
 
-LOGIN_REDIRECT_URL = 'signin'
-LOGOUT_REDIRECT_URL = 'signin'
-
 WSGI_APPLICATION = "hacktivist.wsgi.application"
 
 # Database
@@ -134,6 +134,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # User model
 AUTH_USER_MODEL = 'member.Members'
+
+LOGIN_REDIRECT_URL = 'signin'
+LOGOUT_REDIRECT_URL = 'signin'
 
 # Login backend
 AUTHENTICATION_BACKENDS = [
