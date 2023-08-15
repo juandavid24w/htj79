@@ -90,6 +90,10 @@ class UserCreationForm(forms.ModelForm):
         required=True,
         widget=forms.PasswordInput(
             attrs={
+                'data-popover-target':
+                'popover-password',
+                'data-popover-placement':
+                'bottom',
                 'placeholder':
                 '••••••••',
                 'class':
