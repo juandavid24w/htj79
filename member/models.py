@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.db import models
+from django.conf import settings
 from django.core.validators import FileExtensionValidator
 from django.utils.translation import gettext_lazy as _
 from uuid import uuid4
@@ -60,8 +61,8 @@ class Members(AbstractUser, PermissionsMixin):
         verbose_name=_('Hacktivist News updates'), default=False)
 
     def save(self, *args, **kwargs):
-        if self.zip_code in ['+91', '0'] and len(str(
-                self.contact)) == 10 and str(self.contact).isnumeric():
+        if self.zip_code in ['+91', '0'] and len(
+                self.contact) == 10 and self.contact.isnumeric():
             self.contact_full = f'{self.zip_code}{self.contact}'
             super(Members, self).save(*args, **kwargs)
 
@@ -69,6 +70,9 @@ class Members(AbstractUser, PermissionsMixin):
         return f'{self.first_name} {self.last_name} | {self.username}'
 
     class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['email'], name='unique email')
+        ]
         ordering = ['-date_joined', 'first_name', 'username']
         verbose_name = _('Member')
         verbose_name_plural = _('Members')
@@ -116,7 +120,8 @@ class Membership(models.Model):
     )
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     year = models.DateField(auto_now_add=True, auto_created=True)
-    member = models.ForeignKey('member.Members', on_delete=models.RESTRICT)
+    member = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               on_delete=models.RESTRICT)
     join_date = models.DateField()
     start_date = models.DateField(auto_now_add=True, auto_created=True)
     payment_method = models.CharField(max_length=30,
