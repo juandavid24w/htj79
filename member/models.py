@@ -61,8 +61,8 @@ class Members(AbstractUser, PermissionsMixin):
         verbose_name=_('Hacktivist News updates'), default=False)
 
     def save(self, *args, **kwargs):
-        if self.zip_code in ['+91', '0'] and len(
-                self.contact) == 10 and self.contact.isnumeric():
+        if self.zip_code in ['+91', '0'] and len(str(
+                self.contact)) == 10 and str(self.contact).isnumeric():
             self.contact_full = f'{self.zip_code}{self.contact}'
             super(Members, self).save(*args, **kwargs)
 
