@@ -135,13 +135,13 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # User model
 AUTH_USER_MODEL = 'member.Members'
 
-LOGIN_REDIRECT_URL = 'signin'
-LOGOUT_REDIRECT_URL = 'signin'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
 # Login backend
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
 # Password validation
