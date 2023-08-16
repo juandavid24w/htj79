@@ -13,7 +13,7 @@ COPY . .
 
 RUN apt update -y
 RUN apt upgrade -y
-RUN apt install -y build-essential python3-dev nano vim curl
+RUN apt install -y build-essential python3-dev python3-gdal nano vim curl
 
 # Install dependencies
 COPY ./requirements.txt .
