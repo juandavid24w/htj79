@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'compressor',
     # Our Apps
     'hacktivist',
     'institutions',
@@ -114,11 +113,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR]
-
-# Compressor settings
-COMPRESS_ROOT = BASE_DIR / 'static'
-COMPRESS_ENABLED = True
-STATICFILES_FINDERS = ('compressor.finders.CompressorFinder', )
 
 # MEDIA_ROOT
 MEDIA_ROOT = MEDIA_DIR
