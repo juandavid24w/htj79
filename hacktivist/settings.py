@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'institutions',
     'glug',
     'member',
+    'meetups',
 ]
 
 MIDDLEWARE = [
