@@ -1,4 +1,6 @@
 from django import forms
+from django.core import validators
+from django.contrib.auth.forms import password_validation
 from member.models import Members
 from glug.models import GLUG
 from institutions.models import Institutions
@@ -6,6 +8,11 @@ from hacktivist.models import Occupation, EducationalQualification
 
 
 class LoginForm(forms.Form):
+    '''
+    Hacktivist Login Form
+    module: member.forms.LoginForm
+    fields: email, password, remember_me
+    '''
     email = forms.EmailField(
         label='',
         required=True,
@@ -36,6 +43,11 @@ class LoginForm(forms.Form):
 
 
 class UserCreationForm(forms.ModelForm):
+    '''
+    Hacktivist User Creation Form
+    module: member.forms.UserCreationForm
+    fields: first_name, last_name, username, email, contact, password, confirm_password, is_accept_TC
+    '''
     first_name = forms.CharField(
         label='',
         required=True,
@@ -75,9 +87,13 @@ class UserCreationForm(forms.ModelForm):
                 'class':
                 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
             }))
-    contact = forms.IntegerField(
+    contact = forms.CharField(
         label='',
         required=True,
+        validators=[
+            validators.MinLengthValidator(10),
+            validators.MaxLengthValidator(10)
+        ],
         widget=forms.NumberInput(
             attrs={
                 'placeholder':
@@ -88,6 +104,7 @@ class UserCreationForm(forms.ModelForm):
     password = forms.CharField(
         label='',
         required=True,
+        validators=[password_validation.validate_password],
         widget=forms.PasswordInput(
             attrs={
                 'data-popover-target':
@@ -109,7 +126,7 @@ class UserCreationForm(forms.ModelForm):
                 'class':
                 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
             }))
-    is_accept_TC = forms.BooleanField(
+    is_accept_TC: 'Is User Accept the Terms & Conditions' = forms.BooleanField(
         label='',
         required=True,
         widget=forms.CheckboxInput(
@@ -127,7 +144,6 @@ class UserCreationForm(forms.ModelForm):
             'email',
             'contact',
             'password',
-            'confirm_password',
             'is_accept_TC',
         ]
 
