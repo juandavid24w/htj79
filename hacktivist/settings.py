@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     # Third Party Apps
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
     # Our Apps
     'hacktivist',
     'institutions',
