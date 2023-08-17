@@ -51,6 +51,8 @@
 - Description
 - Minutes
 - Poster
+- Prepone/Postpone
+- Cancel meeting
 
 # Questionnaire
 
