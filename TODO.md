@@ -41,17 +41,16 @@
 
 # Meetings
 
-- Date
-- Time
-- GLUG
-- Location
-- Online?
+- Date - 
+- Time -
+- GLUG -
+- Location -
+- Online? - 
 - Online Link
 - Invitees
-- Description
-- Minutes
-- Poster
-- Prepone/Postpone
+- Description - 
+- Minutes - 
+- Poster - 
 - Cancel meeting
 
 # Questionnaire
