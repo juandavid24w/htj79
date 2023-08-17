@@ -1,6 +1,8 @@
 from django.db import models
 from hacktivist.models import Platform
 from django.core.validators import FileExtensionValidator
+from django.utils.translation import gettext as _
+
 
 # Create your models here.
 class Meetups(models.Model):

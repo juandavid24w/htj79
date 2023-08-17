@@ -90,3 +90,7 @@ class EducationalQualification(models.TextChoices):
     under_graduate = 'Under Graduate', 'Under Graduate'
     post_graduate = 'Post Graduate', 'Post Graduate'
     doctorate = 'Doctorate', 'Doctorate'
+
+class Platform(models.TextChoices):
+    online = 'Online', 'Online'
+    offline = 'Offine', 'Offline'
