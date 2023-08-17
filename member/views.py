@@ -15,7 +15,7 @@ def userCreation(request):
             if request.POST.get('news'):
                 obj.is_news_subscribed = True
             obj.save()
-            return redirect('')
+            return redirect(resolve_url('home'))
         else:
             return render(request,
                           template_name='step1.html',
