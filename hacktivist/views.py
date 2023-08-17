@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, resolve_url
 from member.models import Members
 from member.forms import LoginForm
+from allauth.account.auth_backends import AuthenticationBackend
 
 
 def signin(request):
@@ -13,17 +14,10 @@ def signin(request):
             if form.is_valid():
                 email = form.cleaned_data.get('email')
                 password = form.cleaned_data.get('password')
-                try:
-                    user = Members.objects.get(email=email)
-                except Members.DoesNotExist:
-                    user = None
-                if user:
-                    user = authenticate(request,
-                                        username=user.username,
-                                        password=password)
-                    if user is not None:
-                        login(request, user)
-                        return redirect(resolve_url('home'))
+                user = authenticate(request, email=email, password=password)
+                if user is not None:
+                    login(request, user)
+                    return redirect(resolve_url('home'))
             return render(request,
                           template_name='_base.html',
                           context={
