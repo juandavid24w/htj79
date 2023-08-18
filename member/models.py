@@ -144,3 +144,4 @@ class Membership(models.Model):
         ordering = ['-year', 'member']
         verbose_name = _('Membership')
         verbose_name_plural = _('Memberships')
+        

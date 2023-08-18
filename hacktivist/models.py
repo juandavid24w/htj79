@@ -1,6 +1,6 @@
 from django.contrib.gis.db import models
 from django.contrib.gis.geos import point
-from django.utils.translation import gettext as _
+
 
 
 class Locations(models.Model):
