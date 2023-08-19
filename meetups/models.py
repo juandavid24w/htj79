@@ -1,5 +1,6 @@
 from django.db import models
-from hacktivist.models import Platform
+from ha
+cktivist.models import Platform
 from django.core.validators import FileExtensionValidator
 from django.utils.translation import gettext as _
 
@@ -21,3 +22,4 @@ class Meetups(models.Model):
         ])
     poster = models.ImageField(verbose_name=_('Poster'),
                                     upload_to="meetups/poster/")
+                                    
