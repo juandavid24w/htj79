@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.conf import settings
 from django.core.validators import FileExtensionValidator
 from django.utils.translation import gettext_lazy as _
@@ -35,8 +36,8 @@ class Members(AbstractUser, PermissionsMixin):
                                   verbose_name=_('Institution'),
                                   blank=True,
                                   null=True)
-    zip_code = models.CharField(max_length=5, default='+91')
-    contact = models.BigIntegerField(verbose_name=_('Contact'))
+    country_code = models.CharField(max_length=5, default='+91')
+    contact = models.CharField(max_length=10, verbose_name=_('Contact'))
     contact_full = models.CharField(max_length=15, null=True, blank=True)
     blood_group = models.CharField(max_length=10,
                                    choices=BloodGroup.choices,
@@ -61,10 +62,11 @@ class Members(AbstractUser, PermissionsMixin):
         verbose_name=_('Hacktivist News updates'), default=False)
 
     def save(self, *args, **kwargs):
-        if self.zip_code in ['+91', '0'] and len(str(
-                self.contact)) == 10 and str(self.contact).isnumeric():
+        if len(self.contact) == 10 and self.contact.isnumeric():
             self.contact_full = f'{self.zip_code}{self.contact}'
             super(Members, self).save(*args, **kwargs)
+        else:
+            raise ValidationError('Invalid Contact Details')
 
     def __str__(self):
         return f'{self.first_name} {self.last_name} | {self.username}'
@@ -144,4 +146,3 @@ class Membership(models.Model):
         ordering = ['-year', 'member']
         verbose_name = _('Membership')
         verbose_name_plural = _('Memberships')
-        
