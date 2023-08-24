@@ -147,6 +147,13 @@ class UserCreationForm(forms.ModelForm):
             'is_accept_TC',
         ]
 
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get('password')
+        confirm_password = cleaned_data.get('confirm_password')
+        if password != confirm_password:
+            self.add_error('password', "Password doesn't match")
+
 
 class ProfileCompletionForm(forms.Form):
     glug = forms.ModelChoiceField(
