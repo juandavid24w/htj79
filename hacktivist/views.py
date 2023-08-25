@@ -1,13 +1,16 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, resolve_url
-from member.models import Members
 from member.forms import LoginForm
-from allauth.account.auth_backends import AuthenticationBackend
 
 
 def signin(request):
     if request.user.is_authenticated:
-        return render(request, template_name='_base.html')
+        if request.user.profile_status in [
+                4, 5
+        ]:  # statuscode 4: PaymentConfirmation, 5: success
+            return render(request, template_name='_base.html')
+        else:
+            return redirect(resolve_url('signup'))
     else:
         if request.method == 'POST':
             form = LoginForm(request.POST)
