@@ -63,7 +63,7 @@ class Members(AbstractUser, PermissionsMixin):
 
     def save(self, *args, **kwargs):
         if len(self.contact) == 10 and self.contact.isnumeric():
-            self.contact_full = f'{self.zip_code}{self.contact}'
+            self.contact_full = f'{self.country_code}{self.contact}'
             super(Members, self).save(*args, **kwargs)
         else:
             raise ValidationError('Invalid Contact Details')
