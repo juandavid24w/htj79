@@ -155,7 +155,7 @@ class UserCreationForm(forms.ModelForm):
             self.add_error('password', "Password doesn't match")
 
 
-class ProfileCompletionForm(forms.Form):
+class ProfileCompletionForm(forms.ModelForm):
     glug = forms.ModelChoiceField(
         label='',
         required=True,
@@ -192,6 +192,7 @@ class ProfileCompletionForm(forms.Form):
                 'class':
                 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
             }))
+
     # address = forms.CharField(
     #     label='',
     #     required=True,
@@ -204,6 +205,14 @@ class ProfileCompletionForm(forms.Form):
     #             'placeholder':
     #             "House.No, Street, Nagar, Area, District, State, Country - Pincode"
     #         }))
+    class Meta:
+        model = Members
+        fields = [
+            'glug',
+            'institute',
+            'occupation',
+            'edu_qualification',
+        ]
 
 
 class PaymentForm(forms.Form):
