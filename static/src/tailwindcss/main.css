@@ -1295,6 +1295,10 @@ select {
   margin: auto;
 }
 
+.m-128 {
+  margin: 32rem;
+}
+
 .-mx-1 {
   margin-left: -0.25rem;
   margin-right: -0.25rem;
@@ -1400,6 +1404,10 @@ select {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.ml-52 {
+  margin-left: 13rem;
 }
 
 .block {

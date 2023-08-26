@@ -1,294 +1,339 @@
-{% extends "_mbase.html" %} {% block title %} Account Info {% endblock %}
-{%block content%}
-<div class="flex flex-col min-h-screen bg-white dark:bg-gray-900">
-  <main class="bg-gray-50 dark:bg-gray-900">
-    <div class="py-8 px-6 md:h-screen">
-      <div class="relative flex flex-col md:flex-row gap-4">
-        <!-- stepper -->
-        <ol class="hidden md:block space-y-4 w-72 basis-1/6 mx-auto md:mx-0 md:my-auto">
-          <li>
-            <div
-              class="w-full p-4 text-blue-700 bg-blue-100 border border-blue-300 rounded-lg dark:bg-gray-800 dark:border-blue-800 dark:text-blue-400"
-              role="alert"
-            >
-              <div class="flex items-center justify-between">
-                <span class="sr-only">Account</span>
-                <h3 class="font-medium">1. Account info</h3>
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div
-              class="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-              role="alert"
-            >
-              <div class="flex items-center justify-between">
-                <span class="sr-only">Profile info</span>
-                <h3 class="font-medium">2. Profile info</h3>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div
-              class="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-              role="alert"
-            >
-              <div class="flex items-center justify-between">
-                <span class="sr-only">Membership</span>
-                <h3 class="font-medium">3. Membership</h3>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div
-              class="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-              role="alert"
-            >
-              <div class="flex items-center justify-between">
-                <span class="sr-only">Payment</span>
-                <h3 class="font-medium">4. Payment</h3>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div
-              class="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-              role="alert"
-            >
-              <div class="flex items-center justify-between">
-                <span class="sr-only">Confirmation</span>
-                <h3 class="font-medium">5. Confirmation</h3>
-              </div>
-            </div>
-          </li>
-        </ol>
-        <!-- endstepper -->
-        <!-- error -->
-        {% if errors %}
-        <section class="absolute inset-x-0 md:bottom-0 w-144 ">{% include 'error.html' %}</section>
-        {% endif %}
-        <!-- enderror -->
-        <!-- mobile stepper -->
-        <ol class="flex md:hidden items-center justify-evenly sm:justify-normal overflow-clip w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base dark:bg-gray-800 dark:border-gray-700 sm:p-4 sm:space-x-4">
-            <li class="flex items-center text-blue-600 dark:text-blue-500">
-                <span class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
-                    1
-                </span>
-                Account <span class="hidden sm:inline-flex sm:ml-2">Info</span>
-                <svg class="w-3 h-3 ml-2 sm:ml-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 9 4-4-4-4M1 9l4-4-4-4"/>
-                </svg>
-            </li>
-            <li class="flex items-center">
-                <span class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">
-                    2
-                </span>
-                Profile <span class="hidden sm:inline-flex sm:ml-2">Info</span>
-                <svg class="w-3 h-3 ml-2 sm:ml-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 9 4-4-4-4M1 9l4-4-4-4"/>
-                </svg>
-            </li>
-            <li class="flex items-center">
-                <span class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">
-                    3
-                </span>
-                Membership
-                <svg class="w-3 h-3 ml-2 sm:ml-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 9 4-4-4-4M1 9l4-4-4-4"/>
-                </svg>
-            </li>
-            <li class="hidden sm:flex items-center">
-                <span class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">
-                    4
-                </span>
-                Payment
-                <svg class="w-3 h-3 ml-2 sm:ml-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 9 4-4-4-4M1 9l4-4-4-4"/>
-                </svg>
-            </li>
-          <li class="hidden sm:flex items-center">
-                <span class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">
-                    5
-                </span>
-                Confirmation
-            </li>
-        </ol>
-        <!-- endstepper -->
-        <div
-          class="basis-4/6 flex flex-col m-auto justify-normal  items-center w-full bg-white rounded-lg shadow lg:flex md:mt-0 lg:max-w-screen-sm xl:p-0 dark:bg-gray-800"
+{% extends "_mbase.html" %} 
+<!-- page title -->
+{% block title %} Account Info {% endblock %}
+<!-- title -->
+{% block formtitle %}Create an account{% endblock %}
+<!-- stepper -->
+{% block stepper %}
+<ol
+  class="hidden md:block space-y-4 w-72 basis-1/6 mx-auto md:mx-0 md:my-auto"
+>
+  <li>
+    <div
+      class="w-full p-4 text-blue-700 bg-blue-100 border border-blue-300 rounded-lg dark:bg-gray-800 dark:border-blue-800 dark:text-blue-400"
+      role="alert"
+    >
+      <div class="flex items-center justify-between">
+        <span class="sr-only">Account</span>
+        <h3 class="font-medium">1. Account info</h3>
+        <svg
+          aria-hidden="true"
+          class="w-5 h-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <div class="p-6 w-full sm:p-8 lg:p-10">
-            <h1
-              class="mb-3 text-2xl font-bold text-gray-900 lg:text-3xl dark:text-white"
-            >
-              Create an account
-            </h1>
-            <form
-              class="mt-8"
-              data-bitwarden-watching="1"
-              method="post"
-              action=""
-            >
-              {% csrf_token %}
-              <div
-                class="flex flex-col mb-5 space-y-6 md:flex-row md:space-y-0 md:space-x-6"
-              >
-                <div class="w-full">
-                  <label
-                    for="firstName"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >First name</label
-                  >
-                  {{form.first_name}}
-                </div>
-                <div class="w-full">
-                  <label
-                    for="lastName"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >Last name</label
-                  >
-                  {{form.last_name}}
-                </div>
-              </div>
-              <label
-                for="website-admin"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Username</label
-              >
-              <div class="flex mb-5">
-                <span
-                  class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
-                >
-                  @
-                </span>
-                {{form.username}}
-              </div>
-              <div class="mb-5">
-                <label
-                  for="email"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >Email</label
-                >
-                {{form.email}}
-              </div>
-              <div class="mb-5">
-                <label
-                  for="contact"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >Contact</label
-                >
-                <div class="flex">
-                  <span
-                    class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
-                  >
-                    +91
-                  </span>
-                  {{form.contact}}
-                </div>
-              </div>
-              <div class="mb-5">
-                <label
-                  for="password"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >Password</label
-                >
-                {{form.password}}
-                <div data-popover id="popover-password" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
-        <div class="p-3 space-y-2">
-            <h3 class="font-semibold text-gray-900 dark:text-white">Must have at least 8 characters</h3>
-            <p>It’s better to have:</p>
-            <ul>
-                <li class="flex items-center mb-1">
-                    - Upper & lower case letters
-                </li>
-                <li class="flex items-center mb-1">
-                    - A symbol (#$&)
-                </li>
-                <li class="flex items-center">
-                    - A longer password (min. 12 chars.)
-                </li>
-            </ul>
-    </div>
-    <div data-popper-arrow></div>
-              </div>
-              <div class="mb-5">
-                <label
-                  for="password"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >Confirm password</label
-                >
-                {{form.confirm_password}}
-              </div>
-              <div class="flex items-start mb-3">
-                <div class="flex items-center h-5">{{form.is_accept_TC}}</div>
-                <div class="ml-3 text-sm">
-                  <label
-                    for="terms"
-                    class="font-medium text-gray-900 dark:text-white"
-                    >I accept the<a
-                      class="ml-1 text-blue-700 dark:text-blue-500 hover:underline"
-                      href="/terms-and-conditions/"
-                      >Terms and Conditions</a
-                    ></label
-                  >
-                </div>
-              </div>
-              <div class="flex items-start mb-5">
-                <div class="flex items-center h-5">
-                  <input
-                    id="news"
-                    aria-describedby="news"
-                    name="news"
-                    type="checkbox"
-                    class="w-4 h-4 bg-gray-50 rounded border-gray-300 focus:ring-3 focus:ring-blue-300 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                </div>
-                <div class="ml-3 text-sm">
-                  <label
-                    for="news"
-                    class="font-medium text-gray-900 dark:text-white"
-                    >Email me about<span
-                      class="ml-1 text-blue-700 dark:text-blue-500 hover:underline"
-                      >FOSS event updates and resources</span
-                    ></label
-                  >
-                </div>
-              </div>
-              <button
-                class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-blue-700"
-                type="submit"
-              >
-                <span class="flex justify-center items-center"
-                  >Create account</span
-                >
-              </button>
-              <div
-                class="text-sm mt-3 font-medium text-gray-500 dark:text-gray-400"
-              >
-                Already have an account?<a
-                  class="ml-1 text-blue-700 dark:text-blue-500 hover:underline"
-                  href="{% url 'home' %}"
-                  >Login here.</a
-                >
-              </div>
-            </form>
-          </div>
-        </div>
+          <path
+            fill-rule="evenodd"
+            d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
       </div>
     </div>
-  </main>
+  </li>
+  <li>
+    <div
+      class="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+      role="alert"
+    >
+      <div class="flex items-center justify-between">
+        <span class="sr-only">Profile info</span>
+        <h3 class="font-medium">2. Profile info</h3>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div
+      class="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+      role="alert"
+    >
+      <div class="flex items-center justify-between">
+        <span class="sr-only">Membership</span>
+        <h3 class="font-medium">3. Membership</h3>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div
+      class="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+      role="alert"
+    >
+      <div class="flex items-center justify-between">
+        <span class="sr-only">Payment</span>
+        <h3 class="font-medium">4. Payment</h3>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div
+      class="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+      role="alert"
+    >
+      <div class="flex items-center justify-between">
+        <span class="sr-only">Confirmation</span>
+        <h3 class="font-medium">5. Confirmation</h3>
+      </div>
+    </div>
+  </li>
+</ol>
+{% endblock %}
+<!-- mstepper -->
+{% block mstepper %}
+<ol
+  class="flex md:hidden items-center justify-evenly sm:justify-normal overflow-clip w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base dark:bg-gray-800 dark:border-gray-700 sm:p-4 sm:space-x-4"
+>
+  <li class="flex items-center text-blue-600 dark:text-blue-500">
+    <span
+      class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500"
+    >
+      1
+    </span>
+    Account <span class="hidden sm:inline-flex sm:ml-2">Info</span>
+    <svg
+      class="w-3 h-3 ml-2 sm:ml-4"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 12 10"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m7 9 4-4-4-4M1 9l4-4-4-4"
+      />
+    </svg>
+  </li>
+  <li class="flex items-center">
+    <span
+      class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400"
+    >
+      2
+    </span>
+    Profile <span class="hidden sm:inline-flex sm:ml-2">Info</span>
+    <svg
+      class="w-3 h-3 ml-2 sm:ml-4"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 12 10"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m7 9 4-4-4-4M1 9l4-4-4-4"
+      />
+    </svg>
+  </li>
+  <li class="flex items-center">
+    <span
+      class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400"
+    >
+      3
+    </span>
+    Membership
+    <svg
+      class="w-3 h-3 ml-2 sm:ml-4"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 12 10"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m7 9 4-4-4-4M1 9l4-4-4-4"
+      />
+    </svg>
+  </li>
+  <li class="hidden sm:flex items-center">
+    <span
+      class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400"
+    >
+      4
+    </span>
+    Payment
+    <svg
+      class="w-3 h-3 ml-2 sm:ml-4"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 12 10"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m7 9 4-4-4-4M1 9l4-4-4-4"
+      />
+    </svg>
+  </li>
+  <li class="hidden sm:flex items-center">
+    <span
+      class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400"
+    >
+      5
+    </span>
+    Confirmation
+  </li>
+</ol>
+{% endblock %}
+<!-- form -->
+{%block content%}
+<form
+  class="mt-8"
+  data-bitwarden-watching="1"
+  method="post"
+  action=""
+>
+  {% csrf_token %}
+  <div
+    class="flex flex-col mb-5 space-y-6 md:flex-row md:space-y-0 md:space-x-6"
+  >
+    <div class="w-full">
+      <label
+        for="firstName"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >First name</label
+      >
+      {{form.first_name}}
+    </div>
+    <div class="w-full">
+      <label
+        for="lastName"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Last name</label
+      >
+      {{form.last_name}}
+    </div>
+  </div>
+  <label
+    for="website-admin"
+    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+    >Username</label
+  >
+  <div class="flex mb-5">
+    <span
+      class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
+    >
+      @
+    </span>
+    {{form.username}}
+  </div>
+  <div class="mb-5">
+    <label
+      for="email"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Email</label
+    >
+    {{form.email}}
+  </div>
+  <div class="mb-5">
+    <label
+      for="contact"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Contact</label
+    >
+    <div class="flex">
+      <span
+        class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
+      >
+        +91
+      </span>
+      {{form.contact}}
+    </div>
+  </div>
+  <div class="mb-5">
+    <label
+      for="password"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Password</label
+    >
+    {{form.password}}
+    <div data-popover id="popover-password" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
+<div class="p-3 space-y-2">
+<h3 class="font-semibold text-gray-900 dark:text-white">Must have at least 8 characters</h3>
+<p>It’s better to have:</p>
+<ul>
+    <li class="flex items-center mb-1">
+        - Upper & lower case letters
+    </li>
+    <li class="flex items-center mb-1">
+        - A symbol (#$&)
+    </li>
+    <li class="flex items-center">
+        - A longer password (min. 12 chars.)
+    </li>
+</ul>
 </div>
+<div data-popper-arrow></div>
+  </div>
+  <div class="mb-5">
+    <label
+      for="password"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Confirm password</label
+    >
+    {{form.confirm_password}}
+  </div>
+  <div class="flex items-start mb-3">
+    <div class="flex items-center h-5">{{form.is_accept_TC}}</div>
+    <div class="ml-3 text-sm">
+      <label
+        for="terms"
+        class="font-medium text-gray-900 dark:text-white"
+        >I accept the<a
+          class="ml-1 text-blue-700 dark:text-blue-500 hover:underline"
+          href="/terms-and-conditions/"
+          >Terms and Conditions</a
+        ></label
+      >
+    </div>
+  </div>
+  <div class="flex items-start mb-5">
+    <div class="flex items-center h-5">
+      <input
+        id="news"
+        aria-describedby="news"
+        name="news"
+        type="checkbox"
+        class="w-4 h-4 bg-gray-50 rounded border-gray-300 focus:ring-3 focus:ring-blue-300 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+      />
+    </div>
+    <div class="ml-3 text-sm">
+      <label
+        for="news"
+        class="font-medium text-gray-900 dark:text-white"
+        >Email me about<span
+          class="ml-1 text-blue-700 dark:text-blue-500 hover:underline"
+          >FOSS event updates and resources</span
+        ></label
+      >
+    </div>
+  </div>
+  <button
+    class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-blue-700"
+    type="submit"
+  >
+    <span class="flex justify-center items-center"
+      >Create account</span
+    >
+  </button>
+  <div
+    class="text-sm mt-3 font-medium text-gray-500 dark:text-gray-400"
+  >
+    Already have an account?<a
+      class="ml-1 text-blue-700 dark:text-blue-500 hover:underline"
+      href="{% url 'home' %}"
+      >Login here.</a
+    >
+  </div>
+</form>
 {% endblock %}
