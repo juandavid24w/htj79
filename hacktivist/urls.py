@@ -31,6 +31,7 @@ urlpatterns = [
     path('', views.signin, name='home'),
     path('logout/', views.signout, name='signout'),
     path('user/', include('member.urls')),
+    path('meetups/',include('meetups.urls')),
 ]
 
 if settings.DEBUG:
