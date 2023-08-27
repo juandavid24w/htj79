@@ -10,8 +10,22 @@ def userCreation(request):
         user = request.user
         if user.profile_status == '1':  # Profile info
             if request.method == 'POST':
-                form = ProfileCompletionForm(request.POST)
+                form = ProfileCompletionForm(request.POST, instance=user)
                 print(request.POST)
+                if form.is_valid():
+                    obj = form.save(commit=False)
+                    obj.profile_status = '2'
+                    if request.POST.get('address'):
+                        obj.address = request.POST.get('address')
+                    obj.save()
+                    return redirect(resolve_url('signup'))
+                else:
+                    return render(request,
+                                  template_name='step2.html',
+                                  context={
+                                      'form': form,
+                                      'errors': form.errors,
+                                  })
             else:
                 return render(request,
                               template_name='step2.html',
