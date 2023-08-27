@@ -38,7 +38,6 @@ class Members(AbstractUser, PermissionsMixin):
                                   null=True)
     country_code = models.CharField(max_length=5, default='+91')
     contact = models.CharField(max_length=10, verbose_name=_('Contact'))
-    contact_full = models.CharField(max_length=15, null=True, blank=True)
     blood_group = models.CharField(max_length=10,
                                    choices=BloodGroup.choices,
                                    blank=True)
@@ -61,12 +60,9 @@ class Members(AbstractUser, PermissionsMixin):
     is_news_subscribed = models.BooleanField(
         verbose_name=_('Hacktivist News updates'), default=False)
 
-    def save(self, *args, **kwargs):
-        if len(self.contact) == 10 and self.contact.isnumeric():
-            self.contact_full = f'{self.country_code}{self.contact}'
-            super(Members, self).save(*args, **kwargs)
-        else:
-            raise ValidationError('Invalid Contact Details')
+    @property
+    def contact_full(self):
+        return f'{self.country_code}{self.contact}'
 
     def __str__(self):
         return f'{self.first_name} {self.last_name} | {self.username}'
