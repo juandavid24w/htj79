@@ -212,7 +212,15 @@
   </div>
   <div class="mb-6">
     <label
-      for="contact"
+      for="institute"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Institution</label
+    >
+    {{form.institute}}
+  </div>
+  <div class="mb-6">
+    <label
+      for="occupation"
       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
       >Occupation</label
     >
@@ -220,20 +228,25 @@
   </div>
   <div class="mb-6">
     <label
-      for="password"
+      for="edu_qualification"
       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
       >Educational Qualification</label
     >
     {{form.edu_qualification}}
   </div>
-  <!-- <div class="mb-6">
+  <div class="mb-6">
     <label
-      for="message"
+      for="address"
       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
       >Address</label
     >
-    {{form.address}}
-  </div> -->
+    <textarea
+      name="address"
+      class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      rows="7"
+      placeholder="House.No, Street, Nagar, Area, District, State, Country - Pincode"
+    ></textarea>
+  </div>
   <button
     class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-blue-700"
     type="submit"
