@@ -42,7 +42,7 @@ class Subscription(models.Model):
         help_text=_('Validity of subscription in years'))
     occupation = ArrayField(models.CharField(max_length=256),
                             size=10,
-                            verbose_name=_('Occupation'))
+                            verbose_name=_('Occupation'), blank=True)
     price = models.IntegerField(verbose_name=_('Price'),
                                 help_text=_('Price for the subscriptions'))
     created_at = models.DateTimeField(auto_now_add=True,
