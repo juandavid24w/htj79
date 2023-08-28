@@ -1,4 +1,5 @@
 from django.contrib.gis.db import models
+from django.contrib.postgres.fields import ArrayField
 from django.contrib.gis.geos import point
 from django.utils.translation import gettext_lazy as _
 
@@ -36,6 +37,12 @@ class Subscription(models.Model):
     name = models.CharField(max_length=256,
                             verbose_name=_('name'),
                             help_text=_('Subscription name'))
+    validity = models.IntegerField(
+        verbose_name=_('Validity'),
+        help_text=_('Validity of subscription in years'))
+    occupation = ArrayField(models.CharField(max_length=256),
+                            size=10,
+                            verbose_name=_('Occupation'))
     price = models.IntegerField(verbose_name=_('Price'),
                                 help_text=_('Price for the subscriptions'))
     created_at = models.DateTimeField(auto_now_add=True,
@@ -90,6 +97,7 @@ class EducationalQualification(models.TextChoices):
     under_graduate = 'Under Graduate', 'Under Graduate'
     post_graduate = 'Post Graduate', 'Post Graduate'
     doctorate = 'Doctorate', 'Doctorate'
+
 
 class Platform(models.TextChoices):
     online = 'Online', 'Online'

@@ -51,10 +51,9 @@ class Members(AbstractUser, PermissionsMixin):
     edu_qualification = models.CharField(
         max_length=30, choices=EducationalQualification.choices, blank=True)
     stream = models.CharField(max_length=256, blank=True)
-    profile_status = models.CharField(max_length=50,
-                                      verbose_name=_('Profile Status'),
-                                      choices=PROFILE_STATUS_CHOICES,
-                                      default=1)
+    profile_status = models.IntegerField(verbose_name=_('Profile Status'),
+                                         choices=PROFILE_STATUS_CHOICES,
+                                         default=1)
     is_accept_TC = models.BooleanField(verbose_name=_('Terms & Conditions'),
                                        default=False)
     is_news_subscribed = models.BooleanField(
