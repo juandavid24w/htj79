@@ -39,7 +39,7 @@ class Subscription(models.Model):
                             help_text=_('Subscription name'))
     validity = models.IntegerField(
         verbose_name=_('Validity'),
-        help_text=_('Validity of subscription in years'))
+        help_text=_('Validity of subscription in years'), default=1)
     occupation = ArrayField(models.CharField(max_length=256),
                             size=10,
                             verbose_name=_('Occupation'), blank=True, null=True)
