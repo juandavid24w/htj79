@@ -1,9 +1,11 @@
 from django.contrib.gis.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.utils.translation import gettext_lazy as _
+from uuid import uuid4
 
 
 class Locations(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     district = models.CharField(max_length=256,
                                 verbose_name=_('district'),
                                 help_text=_(''))
