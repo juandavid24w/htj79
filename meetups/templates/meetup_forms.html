@@ -1,8 +1,42 @@
 {% extends "_base.html" %}
-{% block title %}Meetups{% endblock title %}
-{% block formtitle %}Meetups form{% endblock formtitle%}
+{% block title %}Meetups{% endblock%}
 
 {% block content %}
 
-<h1 class="text-4xl">Hello Hacktivists</h1>
-{%endblock content%}
+<div>
+<h1 class="mb-6 text-xl text-center font-bold">Create a meeting</h1>
+</div>
+
+<form action="" method="post" class=" flex flex-col w-full items-center  m-auto">
+<div class="mb-6 w-1/2 ">
+    <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><strong>Location</strong></label>
+    <input type="text" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="Location">
+</div>
+<div class="mb-6 w-1/2 ">
+    <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><strong>GLUG</strong></label>
+    <input type="text" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="GLUG">
+</div>
+<div class="mb-6 w-1/2 ">
+    <label for="small-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><strong>Date</strong></label>
+    <input type="text" id="small-input" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+</div>
+
+<div class="mb-6 w-1/2">
+    <label for="small-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><strong>Time</strong></label>
+    <input type="text" id="small-input" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+</div>
+<div class="mb-6 w-1/2">
+    <label for="small-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><strong>Platform</strong></label>
+    <input type="text" id="small-input" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+</div>
+<div class="mb-6 w-1/2 ">
+    <label for="small-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><strong>Venue</strong></label>
+    <input type="text" id="small-input" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+</div>
+<div class="w-1/3"><button
+    type="submit"
+    class="text-white bg-blue-700 hover:bg-black focus:ring-2 focus:outline-none focus:ring-slate-500 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">Sign in
+</button></div>
+
+</form>
+{%endblock %}
