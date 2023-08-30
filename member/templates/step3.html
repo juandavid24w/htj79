@@ -7,10 +7,7 @@
 {% block stepper %}
 <ol class="hidden md:block space-y-4 w-72 basis-1/6 mx-auto md:mx-0 md:my-auto">
   <li>
-    <div
-      class="w-full p-4 text-green-700 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:border-green-800 dark:text-green-400"
-      role="alert"
-    >
+    <div class="stepper-complete" role="alert">
       <div class="flex items-center justify-between">
         <span class="sr-only">Account</span>
         <h3 class="font-medium">1. Account info</h3>
@@ -31,13 +28,31 @@
     </div>
   </li>
   <li>
-    <div
-      class="w-full p-4 text-blue-700 bg-blue-100 border border-blue-300 rounded-lg dark:bg-gray-800 dark:border-blue-800 dark:text-blue-400"
-      role="alert"
-    >
+    <div class="stepper-complete" role="alert">
       <div class="flex items-center justify-between">
         <span class="sr-only">Profile info</span>
         <h3 class="font-medium">2. Profile info</h3>
+        <svg
+          aria-hidden="true"
+          class="w-5 h-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="stepper-active" role="alert">
+      <div class="flex items-center justify-between">
+        <span class="sr-only">Membership</span>
+        <h3 class="font-medium">3. Membership</h3>
         <svg
           aria-hidden="true"
           class="w-5 h-5"
@@ -55,21 +70,7 @@
     </div>
   </li>
   <li>
-    <div
-      class="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-      role="alert"
-    >
-      <div class="flex items-center justify-between">
-        <span class="sr-only">Membership</span>
-        <h3 class="font-medium">3. Membership</h3>
-      </div>
-    </div>
-  </li>
-  <li>
-    <div
-      class="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-      role="alert"
-    >
+    <div class="stepper-inactive" role="alert">
       <div class="flex items-center justify-between">
         <span class="sr-only">Payment</span>
         <h3 class="font-medium">4. Payment</h3>
@@ -77,10 +78,7 @@
     </div>
   </li>
   <li>
-    <div
-      class="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-      role="alert"
-    >
+    <div class="stepper-inactive" role="alert">
       <div class="flex items-center justify-between">
         <span class="sr-only">Confirmation</span>
         <h3 class="font-medium">5. Confirmation</h3>
@@ -200,51 +198,6 @@
 {%block content%}
 <form class="mt-8" method="post" action="">
   {% csrf_token %}
-  <div class="mb-6">
-    <label
-      for="email"
-      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      >GLUG</label
-    >
-    {{form.glug}}
-  </div>
-  <div class="mb-6">
-    <label
-      for="institute"
-      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      >Institution</label
-    >
-    {{form.institute}}
-  </div>
-  <div class="mb-6">
-    <label
-      for="occupation"
-      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      >Occupation</label
-    >
-    {{form.occupation}}
-  </div>
-  <div class="mb-6">
-    <label
-      for="edu_qualification"
-      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      >Educational Qualification</label
-    >
-    {{form.edu_qualification}}
-  </div>
-  <div class="mb-6">
-    <label
-      for="address"
-      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      >Address</label
-    >
-    <textarea
-      name="address"
-      class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-      rows="7"
-      placeholder="House.No, Street, Nagar, Area, District, State, Country - Pincode"
-    ></textarea>
-  </div>
   <button
     class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-blue-700"
     type="submit"

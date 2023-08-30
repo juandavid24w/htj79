@@ -8,13 +8,13 @@ from member.forms import UserCreationForm, ProfileCompletionForm, PaymentForm
 def userCreation(request):
     if request.user.is_authenticated:
         user = request.user
-        if user.profile_status == '1':  # Profile info
+        if user.profile_status == 1:  # Profile info
             if request.method == 'POST':
                 form = ProfileCompletionForm(request.POST, instance=user)
                 print(request.POST)
                 if form.is_valid():
                     obj = form.save(commit=False)
-                    obj.profile_status = '2'
+                    obj.profile_status = 2
                     if request.POST.get('address'):
                         obj.address = request.POST.get('address')
                     obj.save()
@@ -30,14 +30,14 @@ def userCreation(request):
                 return render(request,
                               template_name='step2.html',
                               context={'form': ProfileCompletionForm})
-        elif user.profile_status == '2':  # Membership
+        elif user.profile_status == 2:  # Membership
             if request.method == 'POST':
                 pass
             else:
                 return render(request,
                               template_name='step3.html',
                               context={'form': ''})
-        elif user.profile_status == '3':  # payment proof
+        elif user.profile_status == 3:  # payment proof
             if request.method == 'POST':
                 pass
             else:
