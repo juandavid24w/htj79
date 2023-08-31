@@ -53,6 +53,8 @@ class UserCreationForm(forms.ModelForm):
         required=True,
         widget=forms.TextInput(
             attrs={
+                'pattern':
+                '[A-Za-z]{1,150}',
                 'placeholder':
                 'John',
                 'class':
@@ -63,6 +65,8 @@ class UserCreationForm(forms.ModelForm):
         required=True,
         widget=forms.TextInput(
             attrs={
+                'pattern':
+                '[A-Za-z]{1,150}',
                 'placeholder':
                 'Doe',
                 'class':
@@ -96,6 +100,8 @@ class UserCreationForm(forms.ModelForm):
         ],
         widget=forms.NumberInput(
             attrs={
+                'min':
+                '0',
                 'placeholder':
                 '9876543210',
                 'class':
