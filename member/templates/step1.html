@@ -66,9 +66,9 @@
 <ol
   class="flex md:hidden items-center justify-around overflow-clip w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base dark:bg-gray-800 dark:border-gray-700 sm:p-4 sm:space-x-4"
 >
-  <li class="flex items-center text-blue-600 dark:text-blue-500">
+  <li class="flex items-center mstepper-active">
     <span
-      class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500"
+      class="flex items-center justify-center w-5 h-5 mr-2 text-xs rounded-full shrink-0 mstepper-active-border"
     >
       1
     </span>
@@ -91,7 +91,7 @@
   </li>
   <li class="flex items-center">
     <span
-      class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400"
+      class="flex items-center justify-center w-5 h-5 mr-2 text-xs rounded-full shrink-0 mstepper-inactive-border"
     >
       2
     </span>
@@ -114,7 +114,7 @@
   </li>
   <li class="flex items-center">
     <span
-      class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400"
+      class="flex items-center justify-center w-5 h-5 mr-2 text-xs rounded-full shrink-0 mstepper-inactive-border"
     >
       3
     </span>
@@ -137,7 +137,7 @@
   </li>
   <li class="flex items-center">
     <span
-      class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400"
+      class="flex items-center justify-center w-5 h-5 mr-2 text-xs rounded-full shrink-0 mstepper-inactive-border"
     >
       4
     </span>
@@ -160,7 +160,7 @@
   </li>
   <li class="flex items-center">
     <span
-      class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400"
+      class="flex items-center justify-center w-5 h-5 mr-2 text-xs rounded-full shrink-0 mstepper-inactive-border"
     >
       5
     </span>
@@ -181,7 +181,7 @@
         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >First name</label
       >
-      {{form.first_name}}
+      {{form.first_name}} {{errors.first_name}}
     </div>
     <div class="w-full">
       <label
@@ -189,7 +189,7 @@
         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >Last name</label
       >
-      {{form.last_name}}
+      {{form.last_name}} {{erros.last_name}}
     </div>
   </div>
   <label
@@ -205,13 +205,14 @@
     </span>
     {{form.username}}
   </div>
+  {{errors.username}}
   <div class="mb-5">
     <label
       for="email"
       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
       >Email</label
     >
-    {{form.email}}
+    {{form.email}} {{errors.email}}
   </div>
   <div class="mb-5">
     <label
@@ -227,6 +228,7 @@
       </span>
       {{form.contact}}
     </div>
+    {{errors.contact}}
   </div>
   <div class="mb-5">
     <label
@@ -234,7 +236,7 @@
       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
       >Password</label
     >
-    {{form.password}}
+    {{form.password}} {{errors.password}}
     <div
       data-popover
       id="popover-password"
