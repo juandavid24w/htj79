@@ -20,6 +20,8 @@ module.exports = {
     "h-9",
     "leading-9",
     "shadow-lg",
+    "errorlist",
+    "errortext",
   ],
   darkMode: "class",
   theme: {

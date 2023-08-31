@@ -7,16 +7,34 @@
     user-select: none;
     -webkit-user-select: none;
   }
-
   .stepper-complete {
     @apply w-full p-4 text-green-700 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:border-green-800 dark:text-green-400;
   }
-
   .stepper-active {
     @apply w-full p-4 text-blue-700 bg-blue-100 border border-blue-300 rounded-lg dark:bg-gray-800 dark:border-blue-800 dark:text-blue-400;
   }
-
   .stepper-inactive {
     @apply w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400;
+  }
+  .mstepper-complete {
+    @apply text-green-700 dark:text-green-400;
+  }
+  .mstepper-complete-border {
+    @apply border border-green-700 dark:border-green-400;
+  }
+  .mstepper-active {
+    @apply text-blue-600 dark:text-blue-500;
+  }
+  .mstepper-active-border {
+    @apply border border-blue-600 dark:border-blue-500;
+  }
+  .mstepper-inactive-border {
+    @apply border border-gray-500 dark:border-gray-400;
+  }
+  .errorlist {
+    @apply mt-2 text-sm text-red-600 dark:text-red-500;
+  }
+  .errortext {
+    @apply text-red-700 dark:text-red-500;
   }
 }
