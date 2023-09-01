@@ -26,40 +26,26 @@ class Locations(models.Model):
                                       null=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    @property
+    def longitude(self):
+        if self.location == None:
+            return None
+        else:
+            return self.location.x
+
+    @property
+    def latitude(self):
+        if self.location == None:
+            return None
+        else:
+            return self.location.y
+
     def __str__(self):
         return f'{self.district}'
 
     class Meta:
         verbose_name = _('location')
         verbose_name_plural = _('locations')
-
-
-class Subscription(models.Model):
-    name = models.CharField(max_length=256,
-                            verbose_name=_('name'),
-                            help_text=_('Subscription name'))
-    validity = models.IntegerField(
-        verbose_name=_('Validity'),
-        help_text=_('Validity of subscription in years'),
-        default=1)
-    occupation = ArrayField(models.CharField(max_length=256),
-                            size=10,
-                            verbose_name=_('Occupation'),
-                            blank=True,
-                            null=True)
-    price = models.IntegerField(verbose_name=_('Price'),
-                                help_text=_('Price for the subscriptions'))
-    created_at = models.DateTimeField(auto_now_add=True,
-                                      auto_created=True,
-                                      null=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f'{self.name} | {self.price}'
-
-    class Meta:
-        verbose_name = _('subscription')
-        verbose_name_plural = _('subscriptions')
 
 
 # Text Choices
@@ -106,3 +92,32 @@ class EducationalQualification(models.TextChoices):
 class Platform(models.TextChoices):
     online = 'Online', 'Online'
     offline = 'Offine', 'Offline'
+
+
+class Subscription(models.Model):
+    name = models.CharField(max_length=256,
+                            verbose_name=_('name'),
+                            help_text=_('Subscription name'))
+    validity = models.IntegerField(
+        verbose_name=_('Validity'),
+        help_text=_('Validity of subscription in years'),
+        default=1)
+    occupation = ArrayField(models.CharField(max_length=256,
+                                             choices=Occupation.choices),
+                            size=10,
+                            verbose_name=_('Occupation'),
+                            blank=True,
+                            null=True)
+    price = models.IntegerField(verbose_name=_('Price'),
+                                help_text=_('Price for the subscriptions'))
+    created_at = models.DateTimeField(auto_now_add=True,
+                                      auto_created=True,
+                                      null=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.name} | {self.price}'
+
+    class Meta:
+        verbose_name = _('subscription')
+        verbose_name_plural = _('subscriptions')

@@ -10,15 +10,18 @@ class GLUG(models.Model):
                           default=uuid4,
                           editable=False,
                           verbose_name='id')
-    name = models.CharField(max_length=256, verbose_name=_('GLUG Name'))
-    institute = models.ForeignKey('institutions.Institutions',
-                                  on_delete=models.RESTRICT,
-                                  verbose_name=_('Institute'),
-                                  help_text=(''))
+    name = models.CharField(max_length=256,
+                            verbose_name=_('GLUG Name'),
+                            help_text=_('Enter your GLUG name.'))
+    institute = models.ForeignKey(
+        'institutions.Institutions',
+        on_delete=models.RESTRICT,
+        verbose_name=_('Institute'),
+        help_text=('Pick your Institute you are associated with.'))
     location = models.ForeignKey('hacktivist.Locations',
                                  on_delete=models.RESTRICT,
                                  verbose_name=_('Location'),
-                                 help_text=_('Pick your GLUG location'))
+                                 help_text=_('Pick your GLUG location.'))
     created_at = models.DateTimeField(auto_now_add=True,
                                       auto_created=True,
                                       null=True)

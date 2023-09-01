@@ -10,14 +10,16 @@ class Institutions(models.Model):
                           default=uuid4,
                           editable=False,
                           verbose_name='id')
-    name = models.CharField(max_length=256, verbose_name=_('Institute Name'))
+    name = models.CharField(max_length=256,
+                            verbose_name=_('Institute Name'),
+                            help_text=_('Enter your Institution name.'))
     # coordinaters
     address = models.TextField(verbose_name=_('Address'),
-                               help_text=_('Address of The Institute'))
+                               help_text=_('Address of The Institute.'))
     location = models.ForeignKey('hacktivist.Locations',
                                  on_delete=models.RESTRICT,
                                  verbose_name=_('Location'),
-                                 help_text=_('Pick your Institute location'))
+                                 help_text=_('Pick your Institute location.'))
     created_at = models.DateTimeField(auto_now_add=True,
                                       auto_created=True,
                                       null=True)

@@ -97,7 +97,7 @@ class ProofOfPayment(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.is_verified} | {self.verified_by.username}'
+        return f'{self.transaction_id} | {self.verified_by.username}'
 
     class Meta:
         ordering = ['-updated_at']
@@ -126,6 +126,8 @@ class Membership(models.Model):
     payment_received = models.IntegerField()
     payment_pending = models.IntegerField()
     proof_of_payment = models.ForeignKey('member.ProofOfPayment',
+                                         null=True,
+                                         blank=True,
                                          on_delete=models.RESTRICT)
     status = models.BooleanField(choices=MEMBERSHIP_STATUS_CHOICES)
     expiry_date = models.DateField()
