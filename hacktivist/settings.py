@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # Third Party Apps
     'allauth',
     'allauth.account',
+    'leaflet',
     # Our Apps
     'hacktivist',
     'institutions',
@@ -172,3 +173,12 @@ PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
     "django.contrib.auth.hashers.ScryptPasswordHasher",
 ]
+
+### Leaflet Config ###
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (18.0, 79.0),
+    'DEFAULT_ZOOM': 4,
+    'MIN_ZOOM': 3,
+    'MAX_ZOOM': 18,
+    'DEFAULT_PRECISION': 6,
+}
