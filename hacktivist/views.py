@@ -5,7 +5,7 @@ from member.forms import LoginForm
 
 def signin(request):
     if request.user.is_authenticated:
-        if request.user.profile_status in ['4', '5']:
+        if request.user.profile_status in ['4', '5'] or request.user.is_superuser:
             return render(request, template_name='_base.html')
         else:
             return redirect(resolve_url('signup'))
