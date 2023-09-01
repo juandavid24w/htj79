@@ -174,7 +174,10 @@ PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.ScryptPasswordHasher",
 ]
 
+######################
 ### Leaflet Config ###
+######################
+
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (18.0, 79.0),
     'DEFAULT_ZOOM': 4,
