@@ -89,7 +89,7 @@ class ProofOfPayment(models.Model):
                 allowed_extensions=['pdf', 'jpg', 'jpeg', 'png'])
         ])
     is_verified = models.BooleanField(choices=VERIFY_CHOICES, default=0)
-    verified_by = models.ForeignKey('member.Members',
+    verified_by = models.ForeignKey(settings.AUTH_USER_MODEL,
                                     on_delete=models.RESTRICT)
     created_at = models.DateTimeField(auto_now_add=True,
                                       auto_created=True,
