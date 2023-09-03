@@ -1,7 +1,7 @@
 from django import forms
 from django.core import validators
 from django.contrib.auth.forms import password_validation
-from member.models import Members
+from member.models import Members, Membership
 from glug.models import GLUG
 from institutions.models import Institutions
 from hacktivist.models import Occupation, EducationalQualification
@@ -16,28 +16,20 @@ class LoginForm(forms.Form):
     email = forms.EmailField(
         label='',
         required=True,
-        widget=forms.EmailInput(
-            attrs={
-                'class':
-                'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-600 focus:border-gray-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
-                'placeholder': 'name@glug.org',
-            }))
+        widget=forms.EmailInput(attrs={
+            'placeholder': 'name@glug.org',
+        }))
     password = forms.CharField(
         label='',
         required=True,
-        widget=forms.PasswordInput(
-            attrs={
-                'class':
-                'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-600 focus:border-gray-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
-                'placeholder': '••••••••',
-            }))
+        widget=forms.PasswordInput(attrs={
+            'placeholder': '••••••••',
+        }))
     remember_me = forms.BooleanField(
         label='',
         required=False,
         widget=forms.CheckboxInput(
             attrs={
-                'class':
-                'w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-gray-600 dark:ring-offset-gray-800',
                 'aria-describedby': 'remember',
             }))
 
@@ -206,6 +198,15 @@ class ProfileCompletionForm(forms.ModelForm):
             'institute',
             'occupation',
             'edu_qualification',
+        ]
+
+
+class MembershipForm(forms.ModelForm):
+
+    class Meta:
+        model = Membership
+        fields = [
+            'payment_method',
         ]
 
 

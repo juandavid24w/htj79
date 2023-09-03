@@ -27,7 +27,7 @@
       </div>
     </div>
   </li>
-  <li>
+  <li onclick="location.href='link';" style="cursor: pointer">
     <div class="stepper-complete" role="alert">
       <div class="flex items-center justify-between">
         <span class="sr-only">Profile info</span>
@@ -198,11 +198,19 @@
 {%block content%}
 <form class="mt-8" method="post" action="">
   {% csrf_token %}
+  <div class="mb-6">
+    <label
+      for="payment_method"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Payment Method</label
+    >
+    {{form.payment_method}}
+  </div>
   <button
     class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-blue-700"
     type="submit"
   >
-    <span class="flex justify-center items-center">Save & Continue</span>
+    <span class="flex justify-center items-center">Pay &#x20B9;{{price}}</span>
   </button>
 </form>
 {% endblock %}
