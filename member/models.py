@@ -6,6 +6,7 @@ from django.core.validators import FileExtensionValidator
 from django.utils.translation import gettext_lazy as _
 from uuid import uuid4
 from hacktivist.models import Gender, BloodGroup, Occupation, EducationalQualification
+from datetime import date
 
 # Create your models here.
 
@@ -116,20 +117,24 @@ class Membership(models.Model):
         ('bank', 'Net Banking'),
     )
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    year = models.DateField(auto_now_add=True, auto_created=True)
+    year = models.IntegerField(default=date.today().year,
+                               verbose_name=_('Year of Join'))
     member = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.RESTRICT)
-    join_date = models.DateField()
+    join_date = models.DateField(auto_now_add=True, auto_created=True)
     start_date = models.DateField(auto_now_add=True, auto_created=True)
     payment_method = models.CharField(max_length=30,
                                       choices=PAYMENT_METHOD_CHOICES)
     payment_received = models.IntegerField()
-    payment_pending = models.IntegerField()
+    payment_pending = models.IntegerField(default=0)
     proof_of_payment = models.ForeignKey('member.ProofOfPayment',
                                          null=True,
                                          blank=True,
                                          on_delete=models.RESTRICT)
-    status = models.BooleanField(choices=MEMBERSHIP_STATUS_CHOICES)
+    status = models.BooleanField(choices=MEMBERSHIP_STATUS_CHOICES,
+                                 verbose_name=_('Status'),
+                                 null=True,
+                                 blank=True)
     expiry_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True,
                                       auto_created=True,

@@ -28,10 +28,9 @@ class LoginForm(forms.Form):
     remember_me = forms.BooleanField(
         label='',
         required=False,
-        widget=forms.CheckboxInput(
-            attrs={
-                'aria-describedby': 'remember',
-            }))
+        widget=forms.CheckboxInput(attrs={
+            'aria-describedby': 'remember',
+        }))
 
 
 class UserCreationForm(forms.ModelForm):
@@ -202,6 +201,10 @@ class ProfileCompletionForm(forms.ModelForm):
 
 
 class MembershipForm(forms.ModelForm):
+    payment_method = forms.CharField(
+        label='',
+        required=True,
+        widget=forms.Select(choices=Membership.PAYMENT_METHOD_CHOICES))
 
     class Meta:
         model = Membership

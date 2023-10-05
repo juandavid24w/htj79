@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, resolve_url
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render
-from member.forms import UserCreationForm, ProfileCompletionForm, PaymentForm
+from hacktivist.models import Subscription
+from member.forms import UserCreationForm, ProfileCompletionForm, PaymentForm, MembershipForm
+from datetime import date
 
 
 # Create your views here.
@@ -32,11 +34,28 @@ def userCreation(request):
                               context={'form': ProfileCompletionForm})
         elif user.profile_status == 2:  # Membership
             if request.method == 'POST':
-                pass
+                form = MembershipForm(request.POST, instance=user)
+                print(request.POST)
+                if form.is_valid():
+                    obj = form.save(commit=False)
+                    print(obj)
+                    return redirect(resolve_url('signup'))
+                else:
+                    return render(request,
+                                  template_name='step3.html',
+                                  context={
+                                      'form': form,
+                                      'errors': form.errors,
+                                  })
             else:
+                subscription = Subscription.objects.filter(
+                    occupation__contains=[user.occupation]).first()
                 return render(request,
                               template_name='step3.html',
-                              context={'form': ''})
+                              context={
+                                  'form': MembershipForm,
+                                  'subscription': subscription
+                              })
         elif user.profile_status == 3:  # payment proof
             if request.method == 'POST':
                 pass
