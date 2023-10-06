@@ -14,6 +14,7 @@
 - Name
 - Institution
 - Location
+- Coordinates
 
 # Member
 
@@ -41,23 +42,24 @@
 
 # Meetings
 
-- Date - 
+- Date -
 - Time -
 - GLUG -
+- Address -
 - Location -
-- Online? - 
+- Online? -
 - Online Link
 - Invitees
-- Description - 
-- Minutes - 
-- Poster - 
+- Description -
+- Minutes -
+- Poster -
 - Cancel meeting
 
 # Questionnaire
 
 # Decisions
 
-
 # HTML5 Custom Validation
- - https://webdesign.tutsplus.com/html5-form-validation-with-the-pattern-attribute--cms-25145t
- - Edu -> Occupation
+
+- https://webdesign.tutsplus.com/html5-form-validation-with-the-pattern-attribute--cms-25145t
+- Edu -> Occupation
