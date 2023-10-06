@@ -1,4 +1,249 @@
-{% extends "_mbase.html" %} {% block title %} Payment {% endblock %}
+{% extends "_mbase.html" %}
+<!-- title -->
+{% block title %} Payment {% endblock %}
+<!-- form title -->
+{% block formtitle %} Payment {% endblock %}
+<!-- stepper -->
+{% block stepper %}
+<ol class="hidden md:block space-y-4 w-72 basis-1/6 mx-auto md:mx-0 md:my-auto">
+  <li>
+    <div class="stepper-complete" role="alert">
+      <div class="flex items-center justify-between">
+        <span class="sr-only">Account</span>
+        <h3 class="font-medium">1. Account info</h3>
+        <svg
+          aria-hidden="true"
+          class="w-5 h-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </div>
+    </div>
+  </li>
+  <li onclick="location.href='link';" style="cursor: pointer">
+    <div class="stepper-complete" role="alert">
+      <div class="flex items-center justify-between">
+        <span class="sr-only">Profile info</span>
+        <h3 class="font-medium">2. Profile info</h3>
+        <svg
+          aria-hidden="true"
+          class="w-5 h-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="stepper-complete" role="alert">
+      <div class="flex items-center justify-between">
+        <span class="sr-only">Membership</span>
+        <h3 class="font-medium">3. Membership</h3>
+        <svg
+          aria-hidden="true"
+          class="w-5 h-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="stepper-active" role="alert">
+      <div class="flex items-center justify-between">
+        <span class="sr-only">Payment</span>
+        <h3 class="font-medium">4. Payment</h3>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="stepper-inactive" role="alert">
+      <div class="flex items-center justify-between">
+        <span class="sr-only">Confirmation</span>
+        <h3 class="font-medium">5. Confirmation</h3>
+      </div>
+    </div>
+  </li>
+</ol>
+{% endblock %}
+<!-- mstepper -->
+{% block mstepper %}
+<ol
+  class="flex md:hidden items-center justify-around overflow-clip w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base dark:bg-gray-800 dark:border-gray-700 sm:p-4 sm:space-x-4"
+>
+  <li class="flex items-center mstepper-complete">
+    <span
+      class="flex items-center justify-center w-5 h-5 mr-2 text-xs rounded-full shrink-0 mstepper-complete-border"
+    >
+      1
+    </span>
+    <span class="hidden sm:inline-flex sm:ml-2">Account Info</span>
+    <svg
+      class="w-3 h-3 ml-2 sm:ml-4"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 12 10"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m7 9 4-4-4-4M1 9l4-4-4-4"
+      />
+    </svg>
+  </li>
+  <li class="flex items-center mstepper-complete">
+    <span
+      class="flex items-center justify-center w-5 h-5 mr-2 text-xs rounded-full shrink-0 mstepper-complete-border"
+    >
+      2
+    </span>
+    <span class="hidden sm:inline-flex sm:ml-2">Profile Info</span>
+    <svg
+      class="w-3 h-3 ml-2 sm:ml-4"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 12 10"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m7 9 4-4-4-4M1 9l4-4-4-4"
+      />
+    </svg>
+  </li>
+  <li class="flex items-center mstepper-complete">
+    <span
+      class="flex items-center justify-center w-5 h-5 mr-2 text-xs rounded-full shrink-0 mstepper-complete-border"
+    >
+      3
+    </span>
+    <span class="hidden sm:inline-flex sm:ml-2">Membership</span>
+    <svg
+      class="w-3 h-3 ml-2 sm:ml-4"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 12 10"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m7 9 4-4-4-4M1 9l4-4-4-4"
+      />
+    </svg>
+  </li>
+  <li class="flex items-center mstepper-active">
+    <span
+      class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-gray-500 rounded-full shrink-0 mstepper-active-border dark:border-gray-400"
+    >
+      4
+    </span>
+    <span class="hidden sm:inline-flex sm:ml-2">Payment</span>
+    <svg
+      class="w-3 h-3 ml-2 sm:ml-4"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 12 10"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m7 9 4-4-4-4M1 9l4-4-4-4"
+      />
+    </svg>
+  </li>
+  <li class="flex items-center">
+    <span
+      class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400"
+    >
+      5
+    </span>
+    <span class="hidden sm:inline-flex sm:ml-2">Confirmation</span>
+  </li>
+</ol>
+{% endblock %}
+<!-- form -->
+{%block content%}
+<div
+  class="p-4 mb-4 text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800"
+  role="alert"
+>
+  <div class="flex items-center">
+    <svg
+      class="flex-shrink-0 w-4 h-4 mr-2"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+    >
+      <path
+        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+      />
+    </svg>
+    <span class="sr-only">Info</span>
+    <h3 class="text-lg font-medium">Information alert</h3>
+  </div>
+  <p class="mt-2 mb-4 text-sm">
+    More info about this info alert goes here. This example text is going to run
+    a bit longer so that you can see how spacing within an alert works with this
+    kind of content.<br />
+    <br />
+    Subscription: {{subscription.name}} <br />
+    Occupation: {{request.user.occupation}} <br />
+    Valid Till: {{validity}} <br />
+  </p>
+</div>
+<form class="mt-8" method="post" action="">
+  {% csrf_token %}
+  <div class="mb-6">
+    <label
+      for="payment_method"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Payment Method</label
+    >
+    {{form.payment_method}}
+  </div>
+  <button
+    class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-blue-700"
+    type="submit"
+  >
+    <span class="flex justify-center items-center"
+      >Pay &#x20B9;{{subscription.price}}</span
+    >
+  </button>
+</form>
 {%block content%}
 <div class="flex flex-col min-h-screen bg-white dark:bg-gray-900">
   <main class="bg-gray-50 dark:bg-gray-900">
