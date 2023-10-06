@@ -10,7 +10,7 @@ class Meetups(models.Model):
     glug = models.ForeignKey("glug.GLUG", on_delete=models.RESTRICT)
     date = models.DateField()
     time = models.TimeField()
-    platform = models.CharField(choices=Platform.choices)
+    mode = models.CharField(choices=Platform.choices)
     venue = models.TextField()
     description = models.TextField()
     minutes = models.FileField(
