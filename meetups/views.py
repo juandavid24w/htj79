@@ -13,6 +13,7 @@ def create_meetup(request):
         form = MeetupForm(request.POST, request.FILES) 
         if form.is_valid():
             form.save()
-            return redirect('meetup_list')  # Redirect to the list view after successful creation
+            return redirect,('meetups_list')  # Redirect to the list view after successful creation
     else:
-        return render(request, 'create_meetup.html', {'form': MeetupForm})
+        form= MeetupForm
+        return render(request, 'create_meetup.html', {'form': form})

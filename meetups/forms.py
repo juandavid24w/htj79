@@ -27,9 +27,6 @@ class MeetupForm(forms.ModelForm):
             widget=widgets.DateInput(attrs={'type': 'date', "class": "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"}),
         )
     time = forms.TimeField()
-    minutes= forms.TextInput(
-        attrs={"class":"text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-blue-700"}
-    )
     class Meta:
         model= Meetups
-        fields=['location','glug', 'date', 'time', 'mode', 'venue', 'description', 'minutes', 'poster']
+        fields=['location','glug', 'date', 'time', 'mode', 'venue', 'description', 'poster']
