@@ -7,16 +7,19 @@ from uuid import uuid4
 class Locations(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     district = models.CharField(
-        max_length=256, verbose_name=_("district"), help_text=_("")
+        max_length=256,
+        verbose_name=_("district"),
     )
-    state = models.CharField(max_length=256, verbose_name=_("state"), help_text=_(""))
+    state = models.CharField(max_length=256, verbose_name=_("state"))
     country = models.CharField(
-        max_length=256, verbose_name=_("country"), help_text=_(""), default="India"
+        max_length=256,
+        verbose_name=_("country"),
+        default="India",
     )
     location = models.PointField(
         geography=True,
         verbose_name=_("location"),
-        help_text=_("point your GLUG location"),
+        help_text=_("point your Institution/GLUG location"),
         null=True,
         blank=True,
     )
