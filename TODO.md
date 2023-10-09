@@ -54,6 +54,8 @@
 - Minutes -
 - Poster -
 - Cancel meeting
+- Completed/past Meetups
+- Future meetups
 
 # Questionnaire
 
