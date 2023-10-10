@@ -8,7 +8,7 @@ def events(request):
     else:
         return redirect(resolve_url('home'))
 
-def create_meetup(request):
+def createMeetup(request):
     if request.method == 'POST':
         form = MeetupForm(request.POST, request.FILES) 
         if form.is_valid():
