@@ -6,8 +6,7 @@
 <div class="flex justify-center min-h-screen">
     <div class="max-w-md p-4">
         <h1 class="flex justify-center text-2xl font-semibold mb-4">Create a New Meetup</h1>
-        {{errors}}
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
 
             {% csrf_token %}
 
@@ -16,44 +15,53 @@
                     <label for="glug"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
                     {{ form.location }}
+                    {{form.location.errors}}
                 </div>
                 <div class="mb-6">
                     <label for="glug" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">GLUG</label>
                     {{ form.glug }}
+                    {{form.glug.errors}}
                 </div>
                 <div class="mb-6">
                     <label for="glug" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
                     {{ form.date }}
+                    {{form.date.errors}}
                 </div>
                 <div class="mb-4">
                     {{ form.time.label_tag }}
                     {{ form.time }}
+                    {{form.time.errors}}
                 </div>
                 <div class="mb-4 w-full ">
                     {{ form.mode.label_tag }}
                     {{ form.mode }}
+                    {{form.mode.errors}}
                 </div>
                 <div class="mb-4 w-full">
                     {{ form.venue.label_tag }}
                     {{ form.venue}}
+                    {{form.venue.errors}}
                 </div>
                 <div class="mb-4">
                     {{ form.description.label_tag }}
                     {{ form.description }}
+                    {{form.description.errors}}
                 </div>
                 <div class="mb-4">
                     {{ form.minutes.label_tag }}
                     {{ form.minutes }}
+                    {{form.minutes.errors}}
                 </div>
                 <div class="mb-4">
                     {{ form.poster.label_tag }}
                     {{ form.poster}}
+                    {{form.poster.errors}}
                 </div>
 
                 <!-- Add similar code for other form fields -->
                 <button type="submit"
                     class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-blue-700">
-                    <span class="flex justify-center ">Create Meetup</span>
+                    <span class="mx-auto">Create Meetup</span>
                 </button>
         </form>
     </div>
