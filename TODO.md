@@ -59,11 +59,13 @@
 
 # Questionnaire
 
-# Communities
+# Committies
+- commity name
+- members
 
 # Decisions
 
-# HTML5 Custom Validation
-
+# Assigned to Ghanesh
+### HTML5 Custom Validation
 - https://webdesign.tutsplus.com/html5-form-validation-with-the-pattern-attribute--cms-25145t
 - Edu -> Occupation
