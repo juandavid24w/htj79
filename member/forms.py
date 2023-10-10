@@ -1,10 +1,11 @@
 from django import forms
 from django.core import validators
-from django.contrib.auth.forms import password_validation
+from django.contrib.auth import password_validation
 from member.models import Members, Membership
 from glug.models import GLUG
 from institutions.models import Institutions
 from hacktivist.models import Occupation, EducationalQualification
+from django.conf import settings
 
 
 class LoginForm(forms.Form):
@@ -19,7 +20,7 @@ class LoginForm(forms.Form):
         required=True,
         widget=forms.EmailInput(
             attrs={
-                "placeholder": "name@glug.org",
+                "placeholder": settings.PLACEHOLDER["email"],
             }
         ),
     )
@@ -28,7 +29,7 @@ class LoginForm(forms.Form):
         required=True,
         widget=forms.PasswordInput(
             attrs={
-                "placeholder": "••••••••",
+                "placeholder": settings.PLACEHOLDER["password"],
             }
         ),
     )
@@ -56,7 +57,8 @@ class UserCreationForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "pattern": "[A-Za-z]{1,150}",
-                "placeholder": "John",
+                "placeholder": settings.PLACEHOLDER["firstName"],
+                "title": "First name should only contain letters.",
                 "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
             }
         ),
@@ -67,7 +69,8 @@ class UserCreationForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "pattern": "[A-Za-z]{1,150}",
-                "placeholder": "Doe",
+                "placeholder": settings.PLACEHOLDER["lastName"],
+                "title": "Last name should only contain letters.",
                 "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
             }
         ),
@@ -78,7 +81,7 @@ class UserCreationForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "rounded-none rounded-r-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
-                "placeholder": "johndoe",
+                "placeholder": settings.PLACEHOLDER["username"],
             }
         ),
     )
@@ -87,7 +90,7 @@ class UserCreationForm(forms.ModelForm):
         required=True,
         widget=forms.EmailInput(
             attrs={
-                "placeholder": "name@glug.org",
+                "placeholder": settings.PLACEHOLDER["email"],
                 "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
             }
         ),
@@ -103,7 +106,7 @@ class UserCreationForm(forms.ModelForm):
             attrs={
                 "type": "tel",
                 "min": "0",
-                "placeholder": "9876543210",
+                "placeholder": settings.PLACEHOLDER["tel"],
                 "class": "rounded-none rounded-r-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
             }
         ),
@@ -116,7 +119,7 @@ class UserCreationForm(forms.ModelForm):
             attrs={
                 "data-popover-target": "popover-password",
                 "data-popover-placement": "bottom",
-                "placeholder": "••••••••",
+                "placeholder": settings.PLACEHOLDER["password"],
                 "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
             }
         ),
@@ -126,12 +129,12 @@ class UserCreationForm(forms.ModelForm):
         required=True,
         widget=forms.PasswordInput(
             attrs={
-                "placeholder": "••••••••",
+                "placeholder": settings.PLACEHOLDER["password"],
                 "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
             }
         ),
     )
-    is_accept_TC: "Is User Accept the Terms & Conditions" = forms.BooleanField(
+    is_accept_TC = forms.BooleanField(
         label="",
         required=True,
         widget=forms.CheckboxInput(

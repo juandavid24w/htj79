@@ -8,35 +8,27 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'src/tailwindcss/main.css' %}" />
   </head>
-  <body class="bg-green-50">
-    <div class="flex flex-col min-h-screen bg-white dark:bg-gray-900">
-      <main class="bg-gray-50 dark:bg-gray-900">
-        <div class="py-8 px-6 md:h-screen">
-          <div class="relative flex flex-col md:flex-row gap-4">
-            <!-- stepper -->
-            {% block stepper %} {% endblock %}
-            <!-- endstepper -->
-            <!-- mobile stepper -->
-            {% block mstepper %}{% endblock %}
-            <!-- endstepper -->
-            <div
-              class="basis-4/6 flex flex-col m-auto justify-normal items-center w-full bg-white rounded-lg shadow lg:flex md:mt-0 lg:max-w-screen-sm xl:p-0 dark:bg-gray-800"
-            >
-              <div class="p-6 w-full sm:p-8 lg:p-10">
-                <h1
-                  class="mb-3 text-2xl font-bold text-gray-900 lg:text-3xl dark:text-white"
-                >
-                  {% block formtitle %}{% endblock %}
-                </h1>
-                <small class="text-slate-400 dark:text-slate-200"
-                  >{% block helptext %}{% endblock %}</small
-                >
-                {% block content %}{% endblock %}
-              </div>
+  <body>
+    <div class="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div class="py-8 px-6">
+        <div class="flex flex-col md:flex-row gap-4">
+          <div
+            class="basis-4/6 flex flex-col m-auto justify-normal items-center w-full bg-white rounded-lg shadow lg:flex md:mt-0 lg:max-w-screen-sm xl:p-0 dark:bg-gray-800"
+          >
+            <div class="p-6 w-full sm:p-8 lg:p-10">
+              <h1
+                class="mb-3 text-2xl font-bold text-gray-900 lg:text-3xl dark:text-white"
+              >
+                {% block formtitle %}{% endblock %}
+              </h1>
+              <small class="text-slate-400 dark:text-slate-200"
+                >{% block helptext %}{% endblock %}</small
+              >
+              {% block content %}{% endblock %}
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
     <script src="{% static 'src/flowbite/flowbite.min.js' %}"></script>
   </body>
