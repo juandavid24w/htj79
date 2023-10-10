@@ -17,9 +17,8 @@ def createMeetup(request):
         form = MeetupForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect(
-                resolve_url("meetups_list")
-            )  # Redirect to the list view after successful creation
+            return redirect(resolve_url("meetups_list"))
+
         else:
             errors = form.errors
             print(form.data)
