@@ -13,10 +13,6 @@ class Meetups(models.Model):
     mode = models.CharField(choices=Platform.choices)
     venue = models.TextField()
     description = models.TextField()
-    minutes = models.FileField(
-        upload_to="meetups/minutes/",
-        validators=[FileExtensionValidator(allowed_extensions=["pdf"])],
-    )
     poster = models.ImageField(verbose_name=_("Poster"), upload_to="meetups/poster/")
 
     def __str__(self):
