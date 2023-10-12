@@ -21,6 +21,7 @@ class MeetupForm(forms.ModelForm):
         widget=widgets.DateInput(attrs={"type": "date"}),
     )
     time = forms.TimeField(widget=forms.TimeInput(format="%H:%M"))
+    description = forms.CharField()
     poster = forms.ImageField()
 
     class Meta:
