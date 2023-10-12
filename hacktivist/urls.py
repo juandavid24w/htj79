@@ -28,7 +28,7 @@ admin.site.index_title = "Welcome to Hacktivist Portal"
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
-    path("", views.SignIn.as_view(), name="home"),
+    path("", views.SignInView.as_view(), name="home"),
     path("logout/", views.signout, name="signout"),
     path("user/", include("member.urls")),
     path("meetups/", include("meetups.urls")),

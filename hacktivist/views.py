@@ -6,7 +6,7 @@ from django.views.decorators.http import require_GET, require_POST, require_safe
 from member.forms import LoginForm
 
 
-class SignIn(View):
+class SignInView(View):
     form_class = LoginForm
     template_name = "_base.html"
 
