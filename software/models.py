@@ -64,7 +64,6 @@ class Software(models.Model):
     alternatives = models.ManyToManyField(
         "software.Software",
         verbose_name=_("Alternative Softwares"),
-        null=True,
         blank=True,
     )
     is_foss = models.BooleanField(
