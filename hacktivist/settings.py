@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "glug",
     "member",
     "meetups",
+    "software",
 ]
 
 MIDDLEWARE = [
