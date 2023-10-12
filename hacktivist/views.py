@@ -21,7 +21,7 @@ class SignInView(View):
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
             user = authenticate(request, email=email, password=password)
-            if user is not None:
+            if user:
                 login(request, user)
                 return redirect(resolve_url("home"))
         return render(
