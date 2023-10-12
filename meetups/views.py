@@ -36,8 +36,6 @@ def events(request):
     return render(request, "meetup_forms.html", context)
 
     # if request.user.is_authenticated:
-    #     meetups = Meetups.objects.all()
-    #     context = {"meetups": meetups}
     #     return render(
     #         request, template_name="meetup_forms.html", context={"form": MeetupForm}
     #     )
