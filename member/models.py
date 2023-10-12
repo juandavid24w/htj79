@@ -79,9 +79,9 @@ class Members(AbstractUser, PermissionsMixin):
 
 
 class ProofOfPayment(models.Model):
-    VERIFY_CHOICES = (
-        (0, "Not Verified"),
-        (1, "Verified"),
+    CHOICES_VERIFY = (
+        (False, "Not Verified"),
+        (True, "Verified"),
     )
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     transaction_id = models.BigIntegerField()
@@ -91,7 +91,7 @@ class ProofOfPayment(models.Model):
             FileExtensionValidator(allowed_extensions=["pdf", "jpg", "jpeg", "png"])
         ],
     )
-    is_verified = models.BooleanField(choices=VERIFY_CHOICES, default=0)
+    is_verified = models.BooleanField(choices=CHOICES_VERIFY, default=False)
     verified_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.RESTRICT)
     created_at = models.DateTimeField(auto_now_add=True, auto_created=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -106,11 +106,11 @@ class ProofOfPayment(models.Model):
 
 
 class Membership(models.Model):
-    MEMBERSHIP_STATUS_CHOICES = (
-        (0, "Expried/Invalid"),
-        (1, "Valid"),
+    CHOICES_MEMBERSHIP_STATUS = (
+        (False, "Expried/Invalid"),
+        (True, "Valid"),
     )
-    PAYMENT_METHOD_CHOICES = (
+    CHOICES_PAYMENT_METHOD = (
         ("cash", "Cash"),
         ("upi", "UPI Payment"),
         ("bank", "Net Banking"),
@@ -119,14 +119,14 @@ class Membership(models.Model):
     member = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.RESTRICT)
     join_date = models.DateField(auto_now_add=True, auto_created=True)
     start_date = models.DateField(auto_now_add=True, auto_created=True)
-    payment_method = models.CharField(max_length=30, choices=PAYMENT_METHOD_CHOICES)
+    payment_method = models.CharField(max_length=30, choices=CHOICES_PAYMENT_METHOD)
     payment_received = models.IntegerField()
     payment_pending = models.IntegerField(default=0)
     proof_of_payment = models.ForeignKey(
         "member.ProofOfPayment", null=True, blank=True, on_delete=models.RESTRICT
     )
     status = models.BooleanField(
-        choices=MEMBERSHIP_STATUS_CHOICES,
+        choices=CHOICES_MEMBERSHIP_STATUS,
         verbose_name=_("Status"),
         null=True,
         blank=True,

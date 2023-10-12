@@ -220,7 +220,7 @@ class MembershipForm(forms.ModelForm):
     payment_method = forms.CharField(
         label="",
         required=True,
-        widget=forms.Select(choices=Membership.PAYMENT_METHOD_CHOICES),
+        widget=forms.Select(choices=Membership.CHOICES_PAYMENT_METHOD),
     )
 
     class Meta:
