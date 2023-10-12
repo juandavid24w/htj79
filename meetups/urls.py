@@ -3,5 +3,5 @@ from meetups import views
 
 urlpatterns = [
     path("list/", views.events, name="meetups_list"),
-    path("create_meetups/", views.createMeetup, name="meetups_create"),
+    path("create_meetups/", views.MeetupCreationView.as_view(), name="meetups_create"),
 ]
