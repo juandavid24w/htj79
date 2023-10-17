@@ -19,7 +19,7 @@ class Meetups(models.Model):
     venue = models.TextField()
     description = models.TextField()
     poster = models.ImageField(verbose_name=_("Poster"), upload_to="meetups/poster/")
-    minutes = models.FileField(validators=[FileExtensionValidator(["pdf"])])
+    # minutes = models.FileField(validators=[FileExtensionValidator(["pdf"])])
 
     def __str__(self):
         return f"{self.glug} ({self.location})"
