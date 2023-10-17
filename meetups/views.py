@@ -35,24 +35,26 @@ def events(request):
     context = {"meetups": meetups}
     return render(request, "meetup_forms.html", context)
 
-    # if request.user.is_authenticated:
-    #     return render(
-    #         request, template_name="meetup_forms.html", context={"form": MeetupForm}
-    #     )
-    # else:
-    #     return redirect(resolve_url("home"))
-
 
 class MeetupView(View):
     template_name = "meetup_detail.html"
 
+    @login_required
     def user_is_meetup_owner(self, user, meetup_id):
         meetup = get_object_or_404(Meetup, pk=meetup_id)
         return meetup.owner == user
 
     @login_required
-    @require_http_methods(["GET", "POST"])
-    def edit(self, request, meetup_id):
+    def get(self, request, meetup_id):
+        if not self.user_is_meetup_owner(request.user, meetup_id):
+            raise Http404
+
+        meetup = get_object_or_404(Meetup, pk=meetup_id)
+        form = MeetupForm(instance=meetup)
+        return render(request, self.template_name, {"form": form, "meetup": meetup})
+
+    @login_required
+    def post(self, request, meetup_id):
         if not self.user_is_meetup_owner(request.user, meetup_id):
             raise Http404
 
@@ -66,6 +68,23 @@ class MeetupView(View):
         else:
             form = MeetupForm(instance=meetup)
         return render(request, self.template_name, {"form": form, "meetup": meetup})
+
+    # @login_required
+    # @require_http_methods(["GET", "POST"])
+    # def edit(self, request, meetup_id):
+    #     if not self.user_is_meetup_owner(request.user, meetup_id):
+    #         raise Http404
+
+    #     meetup = get_object_or_404(Meetup, pk=meetup_id)
+
+    #     if request.method == "POST":
+    #         form = MeetupForm(request.POST, request.FILES, instance=meetup)
+    #         if form.is_valid():
+    #             form.save()
+    #             return redirect("meetup_list")
+    #     else:
+    #         form = MeetupForm(instance=meetup)
+    #     return render(request, self.template_name, {"form": form, "meetup": meetup})
 
     @login_required
     @require_http_methods(["GET", "POST"])
