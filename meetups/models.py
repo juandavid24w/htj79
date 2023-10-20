@@ -10,7 +10,7 @@ from glug.models import GLUG
 
 # Create your models here.
 class Meetups(models.Model):
-    # owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.ForeignKey("hacktivist.Locations", on_delete=models.CASCADE)
     glug = models.ForeignKey("glug.GLUG", on_delete=models.RESTRICT)
     date = models.DateField()
@@ -19,7 +19,7 @@ class Meetups(models.Model):
     venue = models.TextField()
     description = models.TextField()
     poster = models.ImageField(verbose_name=_("Poster"), upload_to="meetups/poster/")
-    # minutes = models.FileField(validators=[FileExtensionValidator(["pdf"])])
+    minutes = models.FileField(validators=[FileExtensionValidator(["pdf"])])
 
     def __str__(self):
         return f"{self.glug} ({self.location})"
