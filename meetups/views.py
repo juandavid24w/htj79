@@ -1,10 +1,12 @@
-from django.shortcuts import render, resolve_url, redirect
+from django.shortcuts import render, resolve_url, redirect, get_object_or_404
 from meetups.forms import MeetupForm
 from django.views import View
 from django.views.decorators.http import require_GET, require_http_methods
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.http import Http404
 from meetups.models import Meetups
+from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Meetup Creation
@@ -36,57 +38,29 @@ def events(request):
     return render(request, "meetup_forms.html", context)
 
 
-class MeetupView(View):
-    template_name = "meetup_detail.html"
-
-    @login_required
-    def user_is_meetup_owner(self, user, meetup_id):
-        meetup = get_object_or_404(Meetup, pk=meetup_id)
-        return meetup.owner == user
-
-    @login_required
+@method_decorator(login_required, name="get")
+class MeetupEditView(View):
     def get(self, request, meetup_id):
-        if not self.user_is_meetup_owner(request.user, meetup_id):
-            raise Http404
+        meetup = get_object_or_404(Meetups, pk=meetup_id)
 
-        meetup = get_object_or_404(Meetup, pk=meetup_id)
-        form = MeetupForm(instance=meetup)
-        return render(request, self.template_name, {"form": form, "meetup": meetup})
+        if meetup.owner == request.user:
+            form = MeetupForm(instance=meetup)
+            return render(request, "meetup_edit.html", {"form": form, "meetup": meetup})
+        else:
+            return HttpResponse("You are not the owner of this meetup.")
 
-    @login_required
     def post(self, request, meetup_id):
-        if not self.user_is_meetup_owner(request.user, meetup_id):
-            raise Http404
+        meetup = get_object_or_404(Meetups, pk=meetup_id)
 
-        meetup = get_object_or_404(Meetup, pk=meetup_id)
-
-        if request.method == "POST":
+        if meetup.owner == request.user:
             form = MeetupForm(request.POST, request.FILES, instance=meetup)
             if form.is_valid():
                 form.save()
                 return redirect("meetup_list")
+            return render(request, "meetup_edit.html", {"form": form, "meetup": meetup})
         else:
-            form = MeetupForm(instance=meetup)
-        return render(request, self.template_name, {"form": form, "meetup": meetup})
+            return HttpResponse("You are not the owner of this meetup.")
 
-    # @login_required
-    # @require_http_methods(["GET", "POST"])
-    # def edit(self, request, meetup_id):
-    #     if not self.user_is_meetup_owner(request.user, meetup_id):
-    #         raise Http404
-
-    #     meetup = get_object_or_404(Meetup, pk=meetup_id)
-
-    #     if request.method == "POST":
-    #         form = MeetupForm(request.POST, request.FILES, instance=meetup)
-    #         if form.is_valid():
-    #             form.save()
-    #             return redirect("meetup_list")
-    #     else:
-    #         form = MeetupForm(instance=meetup)
-    #     return render(request, self.template_name, {"form": form, "meetup": meetup})
-
-    @login_required
     @require_http_methods(["GET", "POST"])
     def delete(self, request, meetup_id):
         if not self.user_is_meetup_owner(request.user, meetup_id):
