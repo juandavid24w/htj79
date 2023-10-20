@@ -8,14 +8,3 @@ class Migration(migrations.Migration):
     dependencies = [
         ("meetups", "0002_rename_platform_meetups_mode"),
     ]
-
-    operations = [
-        migrations.AlterField(
-            model_name="meetups",
-            name="minutes",
-            field=models.FileField(
-                upload_to="",
-                validators=[django.core.validators.FileExtensionValidator(["pdf"])],
-            ),
-        ),
-    ]
