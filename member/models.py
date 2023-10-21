@@ -6,7 +6,6 @@ from django.core.validators import FileExtensionValidator
 from django.utils.translation import gettext_lazy as _
 from uuid import uuid4
 from hacktivist.models import Gender, BloodGroup, Occupation, EducationalQualification
-from datetime import date
 
 # Create your models here.
 
