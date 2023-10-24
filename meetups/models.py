@@ -10,7 +10,9 @@ from glug.models import GLUG
 
 # Create your models here.
 class Meetups(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True
+    )
     location = models.ForeignKey("hacktivist.Locations", on_delete=models.CASCADE)
     glug = models.ForeignKey("glug.GLUG", on_delete=models.RESTRICT)
     date = models.DateField()
