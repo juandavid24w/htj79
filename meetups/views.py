@@ -3,7 +3,7 @@ from meetups.forms import MeetupForm
 from django.views import View
 from django.views.decorators.http import require_GET, require_http_methods
 from django.contrib.auth.decorators import login_required, permission_required
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from meetups.models import Meetups
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
