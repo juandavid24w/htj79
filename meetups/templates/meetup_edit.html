@@ -2,10 +2,6 @@
 {% block title %}Edit Meetup{% endblock %}
 
 {% block content %}
-{% extends "_base.html" %}
-{% block title %}Meetups{% endblock%}
-
-{% block content %}
 
 <div class="flex justify-center min-h-screen">
     <div class="max-w-md p-4">
@@ -16,8 +12,7 @@
 
             <div class="mb-4 w-full">
                 <div class="mb-6">
-                    <label for="glug"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+                    <label for="glug" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
                     {{ form.location }}
                     {{form.location.errors}}
                 </div>
@@ -58,12 +53,10 @@
                 </div>
 
                 <!-- Add similar code for other form fields -->
-                <button type="submit"
-                    class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-blue-700">
+                <button type="submit" class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-blue-700">
                     <span class="mx-auto">Update</span>
                 </button>
-                <button type="submit"
-                    class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-red-700">
+                <button type="submit" class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-red-700">
                     <span class="mx-auto">Cancel</span>
                 </button>
         </form>
@@ -72,5 +65,3 @@
 
 
 {%endblock %}
-
-{% endblock %}

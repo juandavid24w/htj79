@@ -20,7 +20,10 @@ class MeetupForm(forms.ModelForm):
     date = forms.DateField(
         widget=widgets.DateInput(attrs={"type": "date"}),
     )
-    time = forms.TimeField(widget=forms.TimeInput(format="%H:%M"))
+    time = forms.TimeField(
+        #        widget=forms.TimeInput(format="%H:%M")
+        widget=widgets.TimeInput(attrs={"type": "time"})
+    )
     description = forms.CharField()
     poster = forms.ImageField()
 
