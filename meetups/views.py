@@ -17,7 +17,9 @@ class MeetupCreationView(View):
     def post(self, request):
         form = MeetupForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            meetup = form.save(commit=False)
+            meetup.owner == request.user  # assigns the created used as owner
+            meetup.save()
             return redirect(resolve_url("meetups_list"))
 
         else:
