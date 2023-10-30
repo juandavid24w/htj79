@@ -37,7 +37,7 @@ class MeetupCreationView(View):
 def events(request):
     meetups = Meetups.objects.all()
     context = {"meetups": meetups}
-    return render(request, "meetup_forms.html", context)
+    return render(request, "meetup_list.html", context)
 
 
 @method_decorator(login_required, name="get")
@@ -58,7 +58,7 @@ class MeetupEditView(View):
             form = MeetupForm(request.POST, request.FILES, instance=meetup)
             if form.is_valid():
                 form.save()
-                return redirect("meetup_list")
+                return redirect("meetups_list")
             return render(request, "meetup_edit.html", {"form": form, "meetup": meetup})
         else:
             return HttpResponse("You are not the owner of this meetup.")
