@@ -10,15 +10,16 @@
     <div class="mb-6 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div class="p-5">
             <a href="#">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{meetup.title}}
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{meetup.title}} |
+                    {{meetup.id}}
                 </h5>
             </a>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{meetup.description}}</p>
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{meetup.description | truncatewords:8}}</p>
             <p class="inline-flex items-center  font-normal text-gray-700 dark:text-gray-400">
                 <svg class="w-3.5 h-3.5 ml-2" width="10" height="10" viewBox="0 0 395.71 395.71">
                     <path
                         d="M197.849 0C122.131 0 60.531 61.609 60.531 137.329c0 72.887 124.591 243.177 129.896 250.388l4.951 6.738a3.064 3.064 0 0 0 2.471 1.255 3.08 3.08 0 0 0 2.486-1.255l4.948-6.738c5.308-7.211 129.896-177.501 129.896-250.388C335.179 61.609 273.569 0 197.849 0zm0 88.138c27.13 0 49.191 22.062 49.191 49.191 0 27.115-22.062 49.191-49.191 49.191-27.114 0-49.191-22.076-49.191-49.191 0-27.129 22.076-49.191 49.191-49.191z " />
-                </svg> {{meetup.venue}}
+                </svg><span class="ml-2"> {{ meetup.venue}}</span>
             </p><br>
             <p class="inline-flex items-center mb-3 font-normal text-gray-700 dark:text-gray-400">
                 <svg class="w-3.5 h-3.5 ml-2 p" xml:space="preserve" id="_x32_" version="1.1" viewBox="0 0 512 512">
@@ -36,9 +37,9 @@
                     <path
                         d="M174.928 382.512h63.591v63.591h-63.591zM174.928 283.96h63.591v63.591h-63.591zM76.385 382.512h63.582v63.591H76.385zM76.385 283.96h63.582v63.591H76.385zM372.032 185.417h63.583v63.582h-63.583zM273.48 185.417h63.591v63.582H273.48zM350.041 293.216l-18.914-14.706-34.441 44.301-20.448-16.357-14.965 18.688 39.404 31.531zM372.032 283.96h63.583v63.591h-63.583zM273.48 382.512h63.591v63.591H273.48zM174.928 185.417h63.591v63.582h-63.591z"
                         class="st0" />
-                </svg> {{meetup.date}} | {{meetup.time}}
+                </svg> <span class="ml-2">{{meetup.date}} | {{meetup.time}}</span>
             </p><br>
-            <a href="#"
+            <a href="{% url 'meetup_details' meetup.id %}"
                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 View details
                 <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
