@@ -74,3 +74,9 @@ class MeetupEditView(View):
             meetup.delete()
             return redirect("meetup_list")
         return render(request, "delete_meetup.html", {"meetup": meetup})
+
+
+def MeetupDetails(request, meetup_id):
+    meetup = Meetups.objects.get(pk=meetup_id)
+    context = {"meetup": meetup}
+    return render(request, "meetup_details.html", context)
