@@ -2,13 +2,12 @@
 {% block title %}Meetups{% endblock%}
 
 {% block content %}
-
-<div class="mb-6">
-    <div>{% for meetup in meetups %}</div>
-    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <a href="#">
-            <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
-        </a>
+<div class="text-center font-bold mb-6 text-2xl">
+    <h1>Upcoming Events/Meetups</h1>
+</div>
+<div class="grid grid-cols-3 gap-4">
+    {% for meetup in meetups %}
+    <div class="mb-6 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div class="p-5">
             <a href="#">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{meetup.title}}
@@ -50,10 +49,8 @@
             </a>
         </div>
     </div>
-
     {% endfor %}
-
-
 </div>
+
 
 {%endblock %}
