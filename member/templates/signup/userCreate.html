@@ -69,49 +69,49 @@
       </div>
       <div data-popper-arrow></div>
     </div>
-    <div class="mb-5">
-      <label for="password">Confirm password</label>
-      {{form.confirm_password}}
-    </div>
-    <div class="flex items-start mb-3">
-      <div class="flex items-center h-5">{{form.is_accept_TC}}</div>
-      <div class="ml-3 text-sm">
-        <label for="terms" class="font-medium text-gray-900 dark:text-white"
-          >I accept the<a
-            class="ml-1 text-blue-700 dark:text-blue-500 hover:underline"
-            href="/terms-and-conditions/"
-            >Terms and Conditions</a
-          ></label
-        >
-      </div>
-    </div>
-    <div class="flex items-start mb-5">
-      <div class="flex items-center h-5">
-        <input
-          id="news"
-          aria-describedby="news"
-          name="news"
-          type="checkbox"
-          class="w-4 h-4 bg-gray-50 rounded border-gray-300 focus:ring-3 focus:ring-blue-300 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
-        />
-      </div>
-      <div class="ml-3 text-sm">
-        <label for="news" class="font-medium text-gray-900 dark:text-white"
-          >Email me about<span
-            class="ml-1 text-blue-700 dark:text-blue-500 hover:underline"
-            >FOSS event updates and resources</span
-          ></label
-        >
-      </div>
-    </div>
-    <button class="button-primary" type="submit">Create account</button>
-    <div class="text-sm mt-3 font-medium text-gray-500 dark:text-gray-400">
-      Already have an account?<a
-        class="ml-1 text-blue-700 dark:text-blue-500 hover:underline"
-        href="{% url 'home' %}"
-        >Login here.</a
+  </div>
+  <div class="mb-5">
+    <label for="password">Confirm password</label>
+    {{form.confirm_password}}
+  </div>
+  <div class="flex items-start mb-5">
+    <div class="flex items-center h-5">{{form.is_accept_TC}}</div>
+    <div class="ml-3 text-sm">
+      <label for="terms" class="font-medium text-gray-900 dark:text-white"
+        >I accept the<a
+          class="ml-1 text-blue-700 dark:text-blue-500 hover:underline"
+          href="/terms-and-conditions/"
+          >Terms and Conditions</a
+        ></label
       >
     </div>
+  </div>
+  <div class="flex items-start mb-5">
+    <div class="flex items-center h-5">
+      <input
+        id="news"
+        aria-describedby="news"
+        name="news"
+        type="checkbox"
+        class="w-4 h-4 bg-gray-50 rounded border-gray-300 focus:ring-3 focus:ring-blue-300 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+      />
+    </div>
+    <div class="ml-3 text-sm">
+      <label for="news" class="font-medium text-gray-900 dark:text-white"
+        >Email me about<span
+          class="ml-1 text-blue-700 dark:text-blue-500 hover:underline"
+          >FOSS event updates and resources</span
+        ></label
+      >
+    </div>
+  </div>
+  <button class="button-primary" type="submit">Create account</button>
+  <div class="text-sm mt-3 font-medium text-gray-500 dark:text-gray-400">
+    Already have an account?<a
+      class="ml-1 text-blue-700 dark:text-blue-500 hover:underline"
+      href="{% url 'home' %}"
+      >Login here.</a
+    >
   </div>
 </form>
 {% endblock %}
