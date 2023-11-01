@@ -5,7 +5,7 @@
 
 <div class="flex justify-center min-h-screen">
     <div class="max-w-md p-4">
-        <h1 class="flex justify-center text-2xl font-semibold mb-4">Create a New Meetup</h1>
+        <h1 class="flex justify-center text-2xl font-semibold mb-4">Edit Meetup</h1>
         <form method="post" enctype="multipart/form-data">
 
             {% csrf_token %}
@@ -58,7 +58,6 @@
                     {{form.poster.errors}}
                 </div>
 
-                <!-- Add similar code for other form fields -->
                 <button type="submit"
                     class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-blue-700">
                     <span class="mx-auto">Update</span>
@@ -67,6 +66,10 @@
                     <button type="submit"
                         class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-red-700">
                         <span class="mx-auto">Cancel</span></a>
+                </button>
+                <button type="submit" name="delete" value="delete"
+                    class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-red-700">
+                    <span class="mx-auto">Delete</span>
                 </button>
 
 
