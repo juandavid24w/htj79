@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+
   [type="text"],
   [type="email"],
   [type="url"],
@@ -20,6 +21,7 @@
   select {
     @apply bg-slate-50 border border-slate-300 text-slate-900 sm:text-sm rounded-lg focus:ring-slate-600 focus:border-slate-600 block w-full p-2.5 dark:bg-slate-700 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white dark:focus:ring-slate-500 dark:focus:border-slate-500;
   }
+
   [type="checkbox"],
   [type="radio"] {
     @apply text-slate-800 dark:text-slate-700 border border-slate-300 rounded bg-slate-50 focus:ring-1 focus:ring-slate-300 dark:bg-slate-700 dark:border-slate-600 dark:focus:ring-slate-600 dark:ring-offset-slate-800;
@@ -30,17 +32,25 @@
   label {
     @apply block mb-2 text-sm font-medium text-gray-900 dark:text-white;
   }
+
   .disable-select {
     user-select: none;
     -webkit-user-select: none;
   }
+
   .button-primary {
     @apply text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-blue-700;
   }
+
   .errorlist {
     @apply mt-2 text-sm text-red-600 dark:text-red-500;
   }
+
   .errortext {
     @apply text-red-700 dark:text-red-500;
+  }
+
+  .edit-link {
+    float: right;
   }
 }
