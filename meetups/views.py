@@ -3,10 +3,11 @@ from meetups.forms import MeetupForm
 from django.views import View
 from django.views.decorators.http import require_GET, require_http_methods
 from django.contrib.auth.decorators import login_required, permission_required
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from meetups.models import Meetups
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 
 
 # Meetup Creation
@@ -56,6 +57,7 @@ class MeetupEditView(View):
 
         if meetup.owner == request.user:
             form = MeetupForm(request.POST, request.FILES, instance=meetup)
+
             if form.is_valid():
                 form.save()
                 return redirect("meetups_list")
@@ -63,17 +65,24 @@ class MeetupEditView(View):
         else:
             return HttpResponse("You are not the owner of this meetup.")
 
-    @require_http_methods(["GET", "POST"])
-    def delete(self, request, meetup_id):
-        if not self.user_is_meetup_owner(request.user, meetup_id):
-            raise Http404
+            if "delete" in request.POST:
+                if meetup.owner == request.user:
+                    meetup.delete()
+                    return HttpResponseRedirect(reverse("meetups_list"))
 
-        meetup = get_object_or_404(Meetup, pk=meetup_id)
+            return render(request, "meetup_list.html", {"form": form, "meetup": meetup})
 
-        if request.method == "POST":
-            meetup.delete()
-            return redirect("meetup_list")
-        return render(request, "delete_meetup.html", {"meetup": meetup})
+
+# def delete(request, meetup_id):
+#     if not self.user_is_meetup_owner(request.user, meetup_id):
+#         raise Http404
+
+#     meetup = get_object_or_404(Meetup, pk=meetup_id)
+
+#     if request.method == "POST":
+#         meetup.delete()
+#         return redirect("meetup_list")
+#     return render(request, "meetup_delete.html", {"meetup": meetup})
 
 
 def MeetupDetails(request, meetup_id):
