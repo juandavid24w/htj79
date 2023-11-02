@@ -12,23 +12,22 @@
 
             <div class="mb-4 w-full">
                 <div class="mb-6">
-                    <label for="glug" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                    <label for="title">Title</label>
                     {{ form.title }}
                     {{form.title.errors}}
                 </div>
                 <div class="mb-6">
-                    <label for="glug"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+                    <label for="location">Location</label>
                     {{ form.location }}
                     {{form.location.errors}}
                 </div>
                 <div class="mb-6">
-                    <label for="glug" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">GLUG</label>
+                    <label for="glug">GLUG</label>
                     {{ form.glug }}
                     {{form.glug.errors}}
                 </div>
                 <div class="mb-6">
-                    <label for="glug" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
+                    <label for="date">Date</label>
                     {{ form.date }}
                     {{form.date.errors}}
                 </div>
@@ -59,8 +58,7 @@
                 </div>
 
                 <!-- Add similar code for other form fields -->
-                <button type="submit"
-                    class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center bg-blue-700">
+                <button type="submit">
                     <span class="mx-auto">Create Meetup</span>
                 </button>
         </form>
