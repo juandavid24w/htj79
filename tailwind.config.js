@@ -7,7 +7,7 @@ module.exports = {
     "./*/forms.py",
     "./node_modules/flowbite/**/*.js",
   ],
-  safelist: ["errorlist", "errortext"],
+  safelist: ["errorlist", "errortext", "rounded-r-md"],
   darkMode: "class",
   theme: {
     fontFamily: {

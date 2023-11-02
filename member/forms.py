@@ -79,6 +79,7 @@ class UserCreationForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "placeholder": settings.PLACEHOLDER["username"],
+                "class": "rounded-none rounded-r-md",
             }
         ),
     )
@@ -103,6 +104,7 @@ class UserCreationForm(forms.ModelForm):
                 "type": "tel",
                 "min": "0",
                 "placeholder": settings.PLACEHOLDER["tel"],
+                "class": "rounded-none rounded-r-md",
             }
         ),
     )
@@ -130,10 +132,7 @@ class UserCreationForm(forms.ModelForm):
     is_accept_TC = forms.BooleanField(
         label="",
         required=True,
-        widget=forms.CheckboxInput(
-            attrs={
-            }
-        ),
+        widget=forms.CheckboxInput(attrs={}),
     )
 
     class Meta:
@@ -161,36 +160,26 @@ class ProfileCompletionForm(forms.ModelForm):
         label="",
         required=True,
         queryset=GLUG.objects.all(),
-        widget=forms.Select(
-            attrs={
-            }
-        ),
+        widget=forms.Select(attrs={}),
     )
     institute = forms.ModelChoiceField(
         label="",
         required=True,
         queryset=Institutions.objects.all(),
-        widget=forms.Select(
-            attrs={
-            }
-        ),
+        widget=forms.Select(attrs={}),
     )
     occupation = forms.ChoiceField(
         label="",
         required=True,
         choices=Occupation.choices,
-        widget=forms.Select(
-            attrs={
-            }
-        ),
+        widget=forms.Select(attrs={}),
     )
     edu_qualification = forms.CharField(
         label="",
         required=True,
         widget=forms.Select(
             choices=EducationalQualification.choices,
-            attrs={
-            },
+            attrs={},
         ),
     )
 
@@ -222,10 +211,7 @@ class PaymentForm(forms.Form):
     transaction_id = forms.IntegerField(
         label="",
         required=True,
-        widget=forms.NumberInput(
-            attrs={
-            }
-        ),
+        widget=forms.NumberInput(attrs={}),
     )
 
 
