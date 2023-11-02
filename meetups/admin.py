@@ -11,7 +11,7 @@ class MeetupAdmin(admin.ModelAdmin):
         "date",
         "author",
     )
-    prepopulated_fields = {"slug": ("title")}
+    prepopulated_fields = {"slug": ("title",)}
 
 
 admin.site.register(Meetups, MeetupAdmin)

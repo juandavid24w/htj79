@@ -3,17 +3,17 @@ from hacktivist.models import Platform
 from django.core.validators import FileExtensionValidator
 from django.utils.translation import gettext as _
 from django.conf import settings
-from uuid import uuid4 as uuid
+import uuid
 
 
 # Create your models here.
 class Meetups(models.Model):
-    id = models.UUIDField(default=uuid(), primary_key=True)
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True
     )
     title = models.TextField()
-    slug = models.SlugField(default='', null=False)
+    slug = models.SlugField(default="", null=False)
     location = models.ForeignKey("hacktivist.Locations", on_delete=models.CASCADE)
     glug = models.ForeignKey("glug.GLUG", on_delete=models.RESTRICT)
     date = models.DateField()
