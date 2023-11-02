@@ -55,22 +55,19 @@ class MeetupEditView(View):
     def post(self, request, meetup_id):
         meetup = get_object_or_404(Meetups, pk=meetup_id)
 
+        if "delete" in request.POST:  # Check if the "Delete" button was clicked
+            if meetup.owner == request.user:
+                meetup.delete()
+                return HttpResponseRedirect(reverse("meetups_list"))
+
         if meetup.owner == request.user:
             form = MeetupForm(request.POST, request.FILES, instance=meetup)
 
             if form.is_valid():
                 form.save()
                 return redirect("meetups_list")
-            return render(request, "meetup_edit.html", {"form": form, "meetup": meetup})
         else:
             return HttpResponse("You are not the owner of this meetup.")
-
-            if "delete" in request.POST:
-                if meetup.owner == request.user:
-                    meetup.delete()
-                    return HttpResponseRedirect(reverse("meetups_list"))
-
-            return render(request, "meetup_list.html", {"form": form, "meetup": meetup})
 
 
 # def delete(request, meetup_id):
@@ -85,7 +82,8 @@ class MeetupEditView(View):
 #     return render(request, "meetup_delete.html", {"meetup": meetup})
 
 
-def MeetupDetails(request, meetup_id):
-    meetup = Meetups.objects.get(pk=meetup_id)
-    context = {"meetup": meetup}
-    return render(request, "meetup_details.html", context)
+class MeetupDetailView(View):
+    def get(self, request, meetup_id):
+        meetup = Meetups.objects.get(pk=meetup_id)
+        context = {"meetup": meetup}
+        return render(request, "meetup_details.html", context)
