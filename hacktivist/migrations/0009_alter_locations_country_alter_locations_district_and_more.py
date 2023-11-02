@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
     dependencies = [
         (
             "hacktivist",
-            "0005_alter_locations_country_alter_locations_district_and_more",
+            "0002_alter_locations_country_alter_locations_district_and_more",
         ),
     ]
 
