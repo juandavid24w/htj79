@@ -59,7 +59,6 @@ class UserCreationForm(forms.ModelForm):
                 "pattern": "[A-Za-z]{1,150}",
                 "placeholder": settings.PLACEHOLDER["firstName"],
                 "title": "First name should only contain letters.",
-                "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
             }
         ),
     )
@@ -71,7 +70,6 @@ class UserCreationForm(forms.ModelForm):
                 "pattern": "[A-Za-z]{1,150}",
                 "placeholder": settings.PLACEHOLDER["lastName"],
                 "title": "Last name should only contain letters.",
-                "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
             }
         ),
     )
@@ -80,7 +78,6 @@ class UserCreationForm(forms.ModelForm):
         required=True,
         widget=forms.TextInput(
             attrs={
-                "class": "rounded-none rounded-r-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
                 "placeholder": settings.PLACEHOLDER["username"],
             }
         ),
@@ -91,7 +88,6 @@ class UserCreationForm(forms.ModelForm):
         widget=forms.EmailInput(
             attrs={
                 "placeholder": settings.PLACEHOLDER["email"],
-                "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
             }
         ),
     )
@@ -107,7 +103,6 @@ class UserCreationForm(forms.ModelForm):
                 "type": "tel",
                 "min": "0",
                 "placeholder": settings.PLACEHOLDER["tel"],
-                "class": "rounded-none rounded-r-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
             }
         ),
     )
@@ -120,7 +115,6 @@ class UserCreationForm(forms.ModelForm):
                 "data-popover-target": "popover-password",
                 "data-popover-placement": "bottom",
                 "placeholder": settings.PLACEHOLDER["password"],
-                "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
             }
         ),
     )
@@ -130,7 +124,6 @@ class UserCreationForm(forms.ModelForm):
         widget=forms.PasswordInput(
             attrs={
                 "placeholder": settings.PLACEHOLDER["password"],
-                "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
             }
         ),
     )
@@ -139,7 +132,6 @@ class UserCreationForm(forms.ModelForm):
         required=True,
         widget=forms.CheckboxInput(
             attrs={
-                "class": "w-4 h-4 bg-gray-50 rounded border-gray-300 focus:ring-3 focus:ring-blue-300 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
             }
         ),
     )
@@ -171,7 +163,6 @@ class ProfileCompletionForm(forms.ModelForm):
         queryset=GLUG.objects.all(),
         widget=forms.Select(
             attrs={
-                "class": "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             }
         ),
     )
@@ -181,7 +172,6 @@ class ProfileCompletionForm(forms.ModelForm):
         queryset=Institutions.objects.all(),
         widget=forms.Select(
             attrs={
-                "class": "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             }
         ),
     )
@@ -191,7 +181,6 @@ class ProfileCompletionForm(forms.ModelForm):
         choices=Occupation.choices,
         widget=forms.Select(
             attrs={
-                "class": "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             }
         ),
     )
@@ -201,7 +190,6 @@ class ProfileCompletionForm(forms.ModelForm):
         widget=forms.Select(
             choices=EducationalQualification.choices,
             attrs={
-                "class": "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             },
         ),
     )
@@ -236,7 +224,6 @@ class PaymentForm(forms.Form):
         required=True,
         widget=forms.NumberInput(
             attrs={
-                "class": "rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             }
         ),
     )
