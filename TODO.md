@@ -97,4 +97,3 @@
 ### HTML5 Custom Validation
 
 - https://webdesign.tutsplus.com/html5-form-validation-with-the-pattern-attribute--cms-25145t
-- Edu -> Occupation

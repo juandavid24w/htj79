@@ -59,6 +59,7 @@ class UserCreationForm(forms.ModelForm):
                 "pattern": "[A-Za-z]{1,150}",
                 "placeholder": settings.PLACEHOLDER["firstName"],
                 "title": "First name should only contain letters.",
+                "class": "invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500",
             }
         ),
     )
@@ -70,6 +71,7 @@ class UserCreationForm(forms.ModelForm):
                 "pattern": "[A-Za-z]{1,150}",
                 "placeholder": settings.PLACEHOLDER["lastName"],
                 "title": "Last name should only contain letters.",
+                "class": "invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500",
             }
         ),
     )
