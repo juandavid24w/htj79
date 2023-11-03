@@ -13,7 +13,7 @@ class Meetups(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True
     )
     title = models.TextField()
-    slug = models.SlugField(default="", null=False)
+    slug = models.SlugField(unique=True, null=False)
     location = models.ForeignKey("hacktivist.Locations", on_delete=models.CASCADE)
     glug = models.ForeignKey("glug.GLUG", on_delete=models.RESTRICT)
     date = models.DateField()
