@@ -1,9 +1,12 @@
+from pyexpat import model
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+import uuid
 
 
 # Create your models here.
 class Tag(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     name = models.CharField(max_length=50, verbose_name=_("Name"))
     created_at = models.DateTimeField(auto_now_add=True, auto_created=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -18,6 +21,7 @@ class Tag(models.Model):
 
 
 class Category(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     name = models.CharField(max_length=50, verbose_name=_("Name"))
     created_at = models.DateTimeField(auto_now_add=True, auto_created=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -32,6 +36,7 @@ class Category(models.Model):
 
 
 class License(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     name = models.CharField(max_length=100, verbose_name=_("Name"))
     url_source = models.URLField(verbose_name=_("License URL"), null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_created=True, null=True)
@@ -52,13 +57,17 @@ class Software(models.Model):
         (False, "Is not FOSS"),
     )
 
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     name = models.CharField(
         max_length=50, verbose_name=_("Name"), help_text=_("Software name")
     )
+    slug = models.SlugField(unique=True, null=False)
     url_wikipedia = models.URLField(
-        verbose_name=_("Wikipedia URL"), null=True, blank=True
+        verbose_name=_("Wikipedia URL"), unique=True, null=True, blank=True
     )
-    page_home = models.URLField(verbose_name=_("Homepage"), null=True, blank=True)
+    page_home = models.URLField(
+        verbose_name=_("Homepage"), unique=True, null=True, blank=True
+    )
     tags = models.ManyToManyField("software.Tag", verbose_name=_("Tags"))
     category = models.ManyToManyField("software.Category", verbose_name=_("Categories"))
     alternatives = models.ManyToManyField(
