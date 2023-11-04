@@ -11,6 +11,9 @@ class TagAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     ]
+    exclude = [
+        "id",
+    ]
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -20,6 +23,9 @@ class CategoryAdmin(admin.ModelAdmin):
     readonly_fields = [
         "created_at",
         "updated_at",
+    ]
+    exclude = [
+        "id",
     ]
 
 
@@ -31,6 +37,9 @@ class LicenseAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     ]
+    exclude = [
+        "id",
+    ]
 
 
 class SoftwareAdmin(admin.ModelAdmin):
@@ -40,6 +49,9 @@ class SoftwareAdmin(admin.ModelAdmin):
     readonly_fields = [
         "created_at",
         "updated_at",
+    ]
+    exclude = [
+        "id",
     ]
     prepopulated_fields = {"slug": ("name",)}
 
