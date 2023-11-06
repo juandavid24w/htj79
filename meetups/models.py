@@ -28,3 +28,6 @@ class Meetups(models.Model):
 
     def __str__(self):
         return f"{self.glug} ({self.location})"
+
+    class Meta:
+        ordering = ["-date", "-time"]
