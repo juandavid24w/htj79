@@ -12,9 +12,8 @@
     {% for meetup in meetups %}
     <div class="mb-6 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div class="p-5">
-            <a href="{% url 'meetup_details' meetup.slug %}">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{meetup.title}} |
-                    {{meetup.id}}
+            <a href="{% url 'meetup_details' meetup.id %}">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{meetup.title}}
                 </h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{meetup.description | truncatewords:8}}</p>
@@ -25,7 +24,7 @@
                 </svg><span class="ml-2"> {{ meetup.venue}}</span>
             </p><br>
             <p class="inline-flex items-center mb-3 font-normal text-gray-700 dark:text-gray-400">
-                <svg class="w-3.5 h-3.5 ml-2 p" xml:space="preserve" id="_x32_" version="1.1" viewBox="0 0 512 512">
+                <svg class="w-3.5 h-3.5 ml-2" xml:space="preserve" id="_x32_" version="1.1" viewBox="0 0 512 512">
                     <style>
                         .st0 {
                             fill: #000
