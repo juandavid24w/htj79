@@ -7,6 +7,7 @@ from meetups.models import Meetups
 
 
 class MeetupForm(forms.ModelForm):
+    id = forms.UUIDField(required=False)
     title = forms.CharField()
     location = forms.ModelChoiceField(
         queryset=Locations.objects.all(),
@@ -24,14 +25,13 @@ class MeetupForm(forms.ModelForm):
     time = forms.TimeField(
         widget=widgets.TimeInput(attrs={"type": "time"}),
     )
-    description = forms.CharField(
-        widget=widgets.Textarea()
-    )
+    description = forms.CharField(widget=widgets.Textarea())
     poster = forms.ImageField()
 
     class Meta:
         model = Meetups
         fields = [
+            "id",
             "title",
             "location",
             "glug",
