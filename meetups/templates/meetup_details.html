@@ -3,7 +3,7 @@
 
 {% block content %}
 <div>
-    {% if meetup.owner == request.user %}
+    {% if meetup.author == request.user %}
     <a href="{% url 'meetups_edit' meetup.id %}" class="edit-link">
         <svg width="20" height="20" fill="none" viewBox="0 0 24 24">
             <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
