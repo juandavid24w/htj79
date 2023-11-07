@@ -8,6 +8,7 @@ from meetups.models import Meetups
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
+from uuid import uuid4
 
 
 # Meetup Creation
@@ -19,12 +20,14 @@ class MeetupCreationView(View):
         form = MeetupForm(request.POST, request.FILES)
         if form.is_valid():
             meetup = form.save(commit=False)
-            meetup.owner = request.user  # assigns the created used as owner
+            meetup.id = uuid4()
+            meetup.author = request.user  # assigns the created used as owner
             meetup.save()
             return redirect(resolve_url("meetups_list"))
 
         else:
             errors = form.errors
+            print(errors)
             print(form.data)
             return render(
                 request, "create_meetup.html", {"form": form, "errors": errors}
@@ -36,7 +39,19 @@ class MeetupCreationView(View):
 
 @require_GET
 def events(request):
-    meetups = Meetups.objects.all()
+    meetups = Meetups.objects.all().values(
+        "id",
+        "title",
+        "location",
+        "glug",
+        "date",
+        "time",
+        "mode",
+        "venue",
+        "description",
+        "poster",
+        "minutes",
+    )
     context = {"meetups": meetups}
     return render(request, "meetup_list.html", context)
 
@@ -46,28 +61,33 @@ class MeetupEditView(View):
     def get(self, request, meetup_id):
         meetup = get_object_or_404(Meetups, pk=meetup_id)
 
-        if meetup.owner == request.user:
+        if meetup.author == request.user:
             form = MeetupForm(instance=meetup)
             return render(request, "meetup_edit.html", {"form": form, "meetup": meetup})
         else:
             return HttpResponse("You are not the owner of this meetup.")
 
     def post(self, request, meetup_id):
-        meetup = get_object_or_404(Meetups, pk=meetup_id)
+        meetup = get_object_or_404(Meetups, id=meetup_id)
 
         if "delete" in request.POST:  # Check if the "Delete" button was clicked
-            if meetup.owner == request.user:
+            if meetup.author == request.user:
                 meetup.delete()
                 return HttpResponseRedirect(reverse("meetups_list"))
+            else:
+                return HttpResponse("You are not the owner of this meetup.")
 
-        if meetup.owner == request.user:
+        if meetup.author == request.user:
             form = MeetupForm(request.POST, request.FILES, instance=meetup)
 
             if form.is_valid():
                 form.save()
                 return redirect("meetups_list")
+
         else:
             return HttpResponse("You are not the owner of this meetup.")
+
+        return HttpResponse("An error occurred while updating the meetup.")
 
 
 # def delete(request, meetup_id):
