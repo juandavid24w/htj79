@@ -87,7 +87,7 @@ class MeetupEditView(View):
 
 
 class MeetupDetailView(View):
-    def get(self, request, meetup_id):
-        meetup = Meetups.objects.get(pk=meetup_id)
+    def get(self, request, slug):
+        meetup = Meetups.objects.get(slug=slug)
         context = {"meetup": meetup}
         return render(request, "meetup_details.html", context)
