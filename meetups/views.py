@@ -35,25 +35,9 @@ class MeetupCreationView(View):
 
 
 # Listing the meetups by user login
-
-
 @require_GET
 def events(request):
-    meetups = Meetups.objects.all().values(
-        "id",
-        "title",
-        "location",
-        "glug",
-        "date",
-        "time",
-        "mode",
-        "venue",
-        "description",
-        "poster",
-        "minutes",
-    )
-    context = {"meetups": meetups}
-    return render(request, "meetup_list.html", context)
+    return render(request, "meetup_list.html", {"meetups": Meetups.objects.all()})
 
 
 @method_decorator(login_required, name="get")
