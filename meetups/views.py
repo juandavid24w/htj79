@@ -74,18 +74,6 @@ class MeetupEditView(View):
         return HttpResponse("An error occurred while updating the meetup.")
 
 
-# def delete(request, meetup_id):
-#     if not self.user_is_meetup_owner(request.user, meetup_id):
-#         raise Http404
-
-#     meetup = get_object_or_404(Meetup, pk=meetup_id)
-
-#     if request.method == "POST":
-#         meetup.delete()
-#         return redirect("meetup_list")
-#     return render(request, "meetup_delete.html", {"meetup": meetup})
-
-
 class MeetupDetailView(View):
     def get(self, request, slug):
         meetup = Meetups.objects.get(slug=slug)
