@@ -5,6 +5,7 @@ from django.utils.translation import gettext as _
 from django.conf import settings
 import uuid
 from django.utils.text import slugify
+from PIL import Image
 
 
 # Create your models here.
@@ -31,6 +32,14 @@ class Meetups(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         super(Meetups, self).save(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        img = Image.open(self.poster.path)
+        if img.height > 338 or img.width > 600:
+            output_size = (478, 338)
+            img.thumbnail(output_size)
+            img.save(self.poster.path)
 
     def __str__(self):
         return f"{self.glug} ({self.location})"
