@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{% static 'src/tailwindcss/main.css' %}" />
   </head>
 
-  <body class="bg-green-50">
+  <body class="bg-green-50 dark:bg-gray-800">
     {% if user.is_authenticated %}
     <!-- Nav bar -->
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
@@ -203,17 +203,11 @@
               </div>
               {% endif %}
               <div>
-                <label
-                  for="email"
-                  >Email</label
-                >
+                <label for="email">Email</label>
                 {{ form.email }}
               </div>
               <div>
-                <label
-                  for="password"
-                  >Password</label
-                >
+                <label for="password">Password</label>
                 {{ form.password }}
               </div>
               <div class="flex items-center justify-between">
