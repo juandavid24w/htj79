@@ -27,6 +27,7 @@ class CategoryAdmin(admin.ModelAdmin):
     exclude = [
         "id",
     ]
+    prepopulated_fields = {"slug": ("name",)}
 
 
 class LicenseAdmin(admin.ModelAdmin):
