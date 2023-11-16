@@ -23,6 +23,7 @@ class Tag(models.Model):
 class Category(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     name = models.CharField(max_length=50, verbose_name=_("Name"))
+    slug = models.SlugField(unique=True, null=False)
     created_at = models.DateTimeField(auto_now_add=True, auto_created=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
 
