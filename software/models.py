@@ -1,6 +1,6 @@
-from pyexpat import model
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 import uuid
 
 
@@ -11,6 +11,9 @@ class Tag(models.Model):
     slug = models.SlugField(unique=True, null=False)
     created_at = models.DateTimeField(auto_now_add=True, auto_created=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse("software:tag", args=[self.slug])
 
     def __str__(self) -> str:
         return f"{self.name}"
@@ -27,6 +30,9 @@ class Category(models.Model):
     slug = models.SlugField(unique=True, null=False)
     created_at = models.DateTimeField(auto_now_add=True, auto_created=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse("software:category", args=[self.slug])
 
     def __str__(self) -> str:
         return f"{self.name}"
@@ -85,6 +91,9 @@ class Software(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True, auto_created=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse("software:software", args=[self.slug])
 
     def __str__(self) -> str:
         return f"{self.name} | {self.is_foss}"
