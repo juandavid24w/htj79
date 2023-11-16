@@ -33,6 +33,7 @@ test_software_sample_date = {
 
 
 class TestSoftwareModels(TestCase):
+    # Test for model creation and str check
     def test_model_str(self):
         test_tag_sample_one = Tag.objects.create(**test_tag_sample_data)
         self.assertEqual(str(test_tag_sample_one), test_tag_sample_data["name"])
@@ -45,8 +46,12 @@ class TestSoftwareModels(TestCase):
         test_software_sample_one = Software.objects.create(
             **test_software_sample_date["one"]
         )
+        test_software_sample_two = Software.objects.create(
+            **test_software_sample_date["two"]
+        )
         test_software_sample_one.tags.set([test_tag_sample_one.id])
         test_software_sample_one.category.set([test_category_sample_one.id])
+        test_software_sample_one.alternatives.set([test_software_sample_two.id])
         test_software_sample_one.license = test_license_sample_one  # type: ignore
         self.assertEqual(
             str(test_software_sample_one),
