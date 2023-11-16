@@ -19,9 +19,16 @@ test_license_sample_data = {
 }
 
 test_software_sample_date = {
-    "name": "Test Software Sample One",
-    "slug": slugify("Test Software Sample One"),
-    "is_foss": True,
+    "one": {
+        "name": "Test Software Sample One",
+        "slug": slugify("Test Software Sample One"),
+        "is_foss": True,
+    },
+    "two": {
+        "name": "Test Software Sample Two",
+        "slug": slugify("Test Software Sample Two"),
+        "is_foss": False,
+    },
 }
 
 
@@ -35,8 +42,13 @@ class TestSoftwareModels(TestCase):
         )
         test_license_sample_one = License.objects.create(**test_license_sample_data)
         self.assertEqual(str(test_license_sample_one), test_license_sample_data["name"])
-        test_software_sample_one = Software.objects.create(**test_software_sample_date)
+        test_software_sample_one = Software.objects.create(
+            **test_software_sample_date["one"]
+        )
+        test_software_sample_one.tags.set([test_tag_sample_one.id])
+        test_software_sample_one.category.set([test_category_sample_one.id])
+        test_software_sample_one.license = test_license_sample_one  # type: ignore
         self.assertEqual(
             str(test_software_sample_one),
-            f"{test_software_sample_date['name']} | {test_software_sample_date['is_foss']}",
+            f"{test_software_sample_date['one']['name']} | {test_software_sample_date['one']['is_foss']}",
         )
