@@ -54,8 +54,8 @@ class License(models.Model):
 
 class Software(models.Model):
     CHOICES_IS_FOSS = (
-        (True, "Is FOSS"),
-        (False, "Is not FOSS"),
+        (True, "Yes"),
+        (False, "No"),
     )
 
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)

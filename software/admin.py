@@ -46,6 +46,12 @@ class LicenseAdmin(admin.ModelAdmin):
 class SoftwareAdmin(admin.ModelAdmin):
     list_display = [
         "name",
+        "is_foss",
+    ]
+    filter_horizontal = [
+        "alternatives",
+        "category",
+        "tags",
     ]
     readonly_fields = [
         "created_at",
@@ -53,6 +59,14 @@ class SoftwareAdmin(admin.ModelAdmin):
     ]
     exclude = [
         "id",
+    ]
+    search_fields = [
+        "name",
+    ]
+    list_filter = [
+        "is_foss",
+        "category",
+        "tags",
     ]
     prepopulated_fields = {"slug": ("name",)}
 
