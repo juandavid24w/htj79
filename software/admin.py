@@ -14,6 +14,7 @@ class TagAdmin(admin.ModelAdmin):
     exclude = [
         "id",
     ]
+    prepopulated_fields = {"slug": ("name",)}
 
 
 class CategoryAdmin(admin.ModelAdmin):
