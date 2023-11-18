@@ -2,31 +2,31 @@
 {% block title %}Details{% endblock %}
 
 {% block content %}
+<div class="flex justify-center w-center">
+    <div class="max-w-md">
+        {% if meetup.author == request.user %}
+        <a href="{% url 'meetups_edit' meetup.id %}" class="edit-link mb-6">Edit
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24">
+                <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6m-1.586-3.586L19.5 7.328A2 2 0 0 0 16.672 4.5l-1.086 1.086m2.828 2.828-6.036 6.037a2 2 0 0 1-1.022.546l-2.942.589.589-2.942a2 2 0 0 1 .547-1.022l6.036-6.036m2.828 2.828-2.828-2.828" />
+            </svg>
+        </a>
+        {% endif %}
+        <h1 class="text-center font-bold text-2xl mb-4">{{meetup.title}}</h1>
+        <img class="mb-6" src="{{ meetup.poster.url }}" alt="Meetup Poster">
+        <h2 class="text-center font-normal text-2xl mb-4"> {{meetup.description}}
+        </h2>
+        <h2 class="text-center  text-md"> {{meetup.venue}}
+        </h2>
+        <h2 class="text-center  text-sm"> {{meetup.date}} | {{meetup.time}}
+        </h2>
+        <h2 class="text-center  text-md"> {{meetup.glug}}
+        </h2>
+        <h2 class="text-center  text-md"> {{meetup.location}}
+        </h2>
+        <h2 class="text-center  text-md"> {{meetup.mode}}
+        </h2>
+    </div>
 
-{% if meetup.author == request.user %}
-<a href="{% url 'meetups_edit' meetup.id %}" class="edit-link">
-    <svg width="20" height="20" fill="none" viewBox="0 0 24 24">
-        <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M12 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6m-1.586-3.586L19.5 7.328A2 2 0 0 0 16.672 4.5l-1.086 1.086m2.828 2.828-6.036 6.037a2 2 0 0 1-1.022.546l-2.942.589.589-2.942a2 2 0 0 1 .547-1.022l6.036-6.036m2.828 2.828-2.828-2.828" />
-    </svg>
-</a>
-{% endif %}
-<h1 class="text-center font-bold text-2xl mb-4">{{meetup.title}}</h1>
-
-<div class="flex justify-center ">
-    <img class="mb-6" src="{{ meetup.poster.url }}" alt="Meetup Poster">
 </div>
-<h2 class="text-center font-normal text-2xl"> {{meetup.description}}
-</h2>
-<h2 class="text-center  text-md"> {{meetup.venue}}
-</h2>
-<h2 class="text-center  text-sm"> {{meetup.date}} | {{meetup.time}}
-</h2>
-<h2 class="text-center  text-md"> {{meetup.glug}}
-</h2>
-<h2 class="text-center  text-md"> {{meetup.location}}
-</h2>
-<h2 class="text-center  text-md"> {{meetup.mode}}
-</h2>
-
 {% endblock %}
