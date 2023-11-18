@@ -57,6 +57,7 @@
 - Completed/past Meetups
 - Future meetups
 - Type (Committee, GLUG Meetup, Special, Event, SIG - choices)
+- Related meetups in meetup details page
 
 # Questionnaire
 
