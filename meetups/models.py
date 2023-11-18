@@ -31,13 +31,11 @@ class Meetups(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
-        super(Meetups, self).save(*args, **kwargs)
-
-    def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
+        # Poster need to be saved in permanent location for PIL to resize
         img = Image.open(self.poster.path)
-        if img.height > 338 or img.width > 600:
-            output_size = (478, 338)
+        if img.height > 1080 or img.width > 1080:
+            output_size = (1080, 1080)
             img.thumbnail(output_size)
             img.save(self.poster.path)
 
