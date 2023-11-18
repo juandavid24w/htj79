@@ -1,1 +1,1 @@
-from software.tests.test_models import *
+from software.tests.models import *
