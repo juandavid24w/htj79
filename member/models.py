@@ -83,7 +83,7 @@ class ProofOfPayment(models.Model):
         (True, "Verified"),
     )
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    transaction_id = models.BigIntegerField()
+    transaction_id = models.CharField(max_length=30)
     document = models.FileField(
         upload_to="users/payments/%Y/%m/%d/",
         validators=[
