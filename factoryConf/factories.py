@@ -2,6 +2,7 @@ from factory.django import DjangoModelFactory, FileField
 from factory import SubFactory
 from datetime import date
 from django.conf import settings
+from django.template.defaultfilters import slugify
 from member.models import ProofOfPayment, Membership
 from software.models import Tag, Category, License, Software
 
@@ -36,8 +37,34 @@ class MembershipFactory(DjangoModelFactory):
     proof_of_payment = SubFactory(ProofOfPaymentFactory)
     expiry_date = date.today()
 
+
 class TagFactory(DjangoModelFactory):
     class Meta:
         model = Tag
-    
-    
+
+    name = "Test Tag Sample One"
+    slug = slugify(name)
+
+
+class CategoryFactory(DjangoModelFactory):
+    class Meta:
+        model = Category
+
+    name = "Test Category Sample One"
+    slug = slugify(name)
+
+
+class LicenseFactory(DjangoModelFactory):
+    class Meta:
+        model = License
+
+    name = "Test License Sample One"
+
+
+class SoftwareFactory(DjangoModelFactory):
+    class Meta:
+        model = Software
+
+    name = "Test Software Sample One"
+    slug = slugify(name)
+    is_foss = True

@@ -22,7 +22,7 @@ test_license_sample_data = {
     "name": "Test License Sample One",
 }
 
-test_software_sample_date = {
+test_software_sample_data = {
     "one": {
         "name": "Test Software Sample One",
         "slug": slugify("Test Software Sample One"),
@@ -46,10 +46,10 @@ class TestSoftwareModels(TestCase):
         )
         cls.test_license_sample_one = License.objects.create(**test_license_sample_data)
         cls.test_software_sample_one = Software.objects.create(
-            **test_software_sample_date["one"]
+            **test_software_sample_data["one"]
         )
         test_software_sample_two = Software.objects.create(
-            **test_software_sample_date["two"]
+            **test_software_sample_data["two"]
         )
         cls.test_software_sample_one.tags.set([cls.test_tag_sample_one.id])
         cls.test_software_sample_one.category.set([cls.test_category_sample_one.id])
@@ -67,7 +67,7 @@ class TestSoftwareModels(TestCase):
         )
         self.assertEqual(
             str(self.test_software_sample_one),
-            f"{test_software_sample_date['one']['name']} | {test_software_sample_date['one']['is_foss']}",
+            f"{test_software_sample_data['one']['name']} | {test_software_sample_data['one']['is_foss']}",
         )
 
     # Test for get_absolute_url
@@ -81,6 +81,6 @@ class TestSoftwareModels(TestCase):
             self.test_category_sample_one.get_absolute_url(),
         )
         self.assertEqual(
-            f"{app_path}/{test_software_sample_date['one']['slug']}/",
+            f"{app_path}/{test_software_sample_data['one']['slug']}/",
             self.test_software_sample_one.get_absolute_url(),
         )
