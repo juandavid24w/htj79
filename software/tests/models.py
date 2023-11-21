@@ -5,7 +5,7 @@ from software.models import Category, Tag, License, Software
 
 # Create your tests here.
 # Test data
-app_path = "/software"
+app_path = "/alternatives"
 app_path_tag = f"{app_path}/tags"
 app_path_category = f"{app_path}/categories"
 test_category_sample_data = {

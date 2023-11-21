@@ -32,7 +32,7 @@ urlpatterns = [
     path("logout/", views.signout, name="signout"),
     path("user/", include("member.urls")),
     path("meetups/", include("meetups.urls")),
-    path("software/", include("software.urls", namespace="software")),
+    path("alternatives/", include("software.urls", namespace="software")),
 ]
 
 if settings.DEBUG:
