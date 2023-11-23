@@ -79,3 +79,13 @@ class MeetupDetailView(View):
         meetup = Meetups.objects.get(slug=slug)
         context = {"meetup": meetup}
         return render(request, "meetup_details.html", context)
+
+    def post(self, request, slug):
+        meetup = get_object_or_404(Meetups, slug=slug)
+        action = request.POST.get("action")
+        if action == "interested":
+            return HttpResponse("Yes youre interested")
+
+        elif action == "attend":
+            return HttpResponse("Okay you will attend this meetup")
+        return redirect("meetup_details", slug=slug)
