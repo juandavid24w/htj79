@@ -30,7 +30,7 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("", views.SignInView.as_view(), name="home"),
     path("logout/", views.signout, name="signout"),
-    path("user/", include("member.urls")),
+    path("user/", include("member.urls", namespace="member")),
     path("meetups/", include("meetups.urls")),
     path("alternatives/", include("software.urls", namespace="software")),
 ]
