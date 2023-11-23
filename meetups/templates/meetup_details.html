@@ -30,22 +30,39 @@
 
 </div> -->
 
+
 <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
     <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
         <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
             <header class="grid grid-cols-2 mb-4 lg:mb-6 not-format">
+
                 <!-- Meetup Title -->
+                
                 <h1 class=" text-3xl font-extrabold leading-tight text-gray-900  lg:text-4xl dark:text-white">{{meetup.title}}</h1>
-                <div class="">
+                <div class="mb-2">
                     <!-- Im Interested, Will attend buttons -->
-                    <button class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto bg-blue-700 mr-2" type="submit"> I'm Interested</button>
-                    <button class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto bg-blue-700" type="submit"> Will attend</button>
+                
+                    <button class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto bg-blue-700 mr-2" type="submit" name="action" value="interested"> I'm Interested</button>
+                    <button class="text-white font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto bg-blue-700" type="submit" name="action" value="attend"> Will attend</button>
                 </div>
+                
                 <div class="mb-2">
                     <p class="text-base text-gray-500 dark:text-gray-400">{{meetup.date}}, {{meetup.time}}</p>
                     <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">{{meetup.venue}}</time></p>
                 </div>
-                <div class="flex col-span-2">
+
+                <div class="">
+                    {% if meetup.author == request.user %}
+                    <a href="{% url 'meetups_edit' meetup.id %}" class="mb-6 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit this meetup 
+                        <svg class="ml-1" width="20" height="20" fill="none" viewBox="0 0 24 24">
+                            <path stroke="#ffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6m-1.586-3.586L19.5 7.328A2 2 0 0 0 16.672 4.5l-1.086 1.086m2.828 2.828-6.036 6.037a2 2 0 0 1-1.022.546l-2.942.589.589-2.942a2 2 0 0 1 .547-1.022l6.036-6.036m2.828 2.828-2.828-2.828" />
+                        </svg>
+                    </a>
+                    {% endif %}
+                </div>
+
+                <div class="flex ">
                     <!-- Social Media shares button -->
 
                     <!-- Facebook -->
@@ -64,13 +81,25 @@
             <img class="mb-6" src="{{ meetup.poster.url }}" alt="Meetup Poster">
         </article>
     </div>
-    <div class="flex justify-between px-4 mx-auto max-w-screen-xl">
-        <div class="ml-3 text-center w-full max-w-sm format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
+    <div class="px-4 mx-auto max-w-screen-xl">
+        <div class="ml-3 text-center w-full format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
             <h2 class=" font-normal text-2xl mb-4"> {{meetup.description}}
             </h2>
         </div>
+        <div class="flex justify-center">
+            {% if meetup.author == request.user %}
+            <a href="{% url 'meetups_edit' meetup.id %}" class="mb-6 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit this meetup
+                <svg class="ml-1" width="20" height="20" fill="none" viewBox="0 0 24 24">
+                    <path stroke="#ffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6m-1.586-3.586L19.5 7.328A2 2 0 0 0 16.672 4.5l-1.086 1.086m2.828 2.828-6.036 6.037a2 2 0 0 1-1.022.546l-2.942.589.589-2.942a2 2 0 0 1 .547-1.022l6.036-6.036m2.828 2.828-2.828-2.828" />
+                </svg>
+            </a>
+            {% endif %}
+        </div>
     </div>
+    
 </main>
+
   
   <aside aria-label="Related articles" class="py-8 lg:py-24 bg-gray-50 dark:bg-gray-800">
     <div class="px-4 mx-auto max-w-screen-xl">
