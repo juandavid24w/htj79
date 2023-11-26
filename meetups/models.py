@@ -27,6 +27,9 @@ class Meetups(models.Model):
         verbose_name=_("Poster"), upload_to="meetups/poster/", null=True
     )
     minutes = models.FileField(validators=[FileExtensionValidator(["pdf"])], null=True)
+    interested_users = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name="interested_meetups", blank=True
+    )
 
     def save(self, *args, **kwargs):
         if not self.slug:
