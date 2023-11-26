@@ -83,9 +83,16 @@ class MeetupDetailView(View):
     def post(self, request, slug):
         meetup = get_object_or_404(Meetups, slug=slug)
         action = request.POST.get("action")
-        if action == "interested":
-            return HttpResponse("Yes youre interested")
 
+        if action == "interested":
+            # Toggle user's interest status
+            if request.user in meetup.interested_users.all():
+                meetup.interested_users.remove(request.user)
+            else:
+                meetup.interested_users.add(request.user)
+
+            
+        # Handle other actions or redirect as needed
         elif action == "attend":
             return HttpResponse("Okay you will attend this meetup")
         return redirect("meetup_details", slug=slug)
