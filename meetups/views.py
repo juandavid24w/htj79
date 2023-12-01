@@ -90,9 +90,13 @@ class MeetupDetailView(View):
                 meetup.interested_users.remove(request.user)
             else:
                 meetup.interested_users.add(request.user)
+            meetup.save()
 
-            
-        # Handle other actions or redirect as needed
-        elif action == "attend":
-            return HttpResponse("Okay you will attend this meetup")
+        elif action == "willattend":
+            # Toggle user's attendance status
+            if request.user in meetup.willattend_users.all():
+                meetup.willattend_users.remove(request.user)
+            else:
+                meetup.willattend_users.add(request.user)
+
         return redirect("meetup_details", slug=slug)
