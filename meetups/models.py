@@ -30,6 +30,9 @@ class Meetups(models.Model):
     interested_users = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="interested_meetups", blank=True
     )
+    willattend_users = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name="willattend_meetups", blank=True
+    )
 
     def save(self, *args, **kwargs):
         if not self.slug:
