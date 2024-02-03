@@ -66,9 +66,7 @@ class Software(models.Model):
     )
 
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
-    name = models.CharField(
-        max_length=50, verbose_name=_("Name"), help_text=_("Software name")
-    )
+    name = models.CharField(max_length=50, verbose_name=_("Name"))
     slug = models.SlugField(unique=True, null=False, blank=True)
     url_wikipedia = models.URLField(
         verbose_name=_("Wikipedia URL"), unique=True, null=True, blank=True
