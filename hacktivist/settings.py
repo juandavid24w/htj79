@@ -15,6 +15,7 @@ from pathlib import Path
 #################
 ### Path Dirs ###
 #################
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = Path(BASE_DIR / "templates")
@@ -52,6 +53,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.gis",
     # Third Party Apps
+    "rest_framework",
+    "drf_spectacular",
+    "drf_spectacular_sidecar",
     "allauth",
     "allauth.account",
     "leaflet",
@@ -154,6 +158,21 @@ AUTHENTICATION_BACKENDS = [
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 
+# RestFrameWork Settings
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 10,
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        # "rest_framework_jwt.authentication.JSONWebTokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+    ),
+}
+
+SITE_ID = 1
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -191,4 +210,18 @@ LEAFLET_CONFIG = {
     "MIN_ZOOM": 3,
     "MAX_ZOOM": 18,
     "DEFAULT_PRECISION": 6,
+}
+
+##########################
+### SwaggerUI Settings ###
+##########################
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Hacktivist API",
+    "DESCRIPTION": "Social network for those who want to change the world.",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SWAGGER_UI_DIST": "SIDECAR",
+    "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
+    "REDOC_DIST": "SIDECAR",
 }

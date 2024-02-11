@@ -143,3 +143,24 @@ class Membership(models.Model):
         ordering = ["-start_date", "member"]
         verbose_name = _("Membership")
         verbose_name_plural = _("Memberships")
+
+
+class PaymentHistory(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    member = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.RESTRICT)
+    proof_of_payment = models.ForeignKey(
+        "member.ProofOfPayment", null=True, blank=True, on_delete=models.RESTRICT
+    )
+    payment_date = models.DateField(auto_now_add=True, auto_created=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_created=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return (
+            f"{self.member.first_name} {self.payment_date} | {self.proof_of_payment.is_verified}"
+        )
+
+    class Meta:
+        ordering = ["-payment_date", "member"]
+        verbose_name = _("Payment history")
+        verbose_name_plural = _("Payment history")

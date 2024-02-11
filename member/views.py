@@ -3,10 +3,15 @@ from django.contrib.auth.hashers import make_password
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
-from django.views.decorators.http import require_GET, require_POST, require_safe
+from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.viewsets import ReadOnlyModelViewSet, ModelViewSet
+from rest_framework.validators import ValidationError
+from member.models import Members, ProofOfPayment
 from member.forms import (
     UserCreationForm,
 )
+from member.serializers import UserSerializer
 
 
 class UserCreationView(View):
@@ -41,3 +46,29 @@ class UserCreationView(View):
 
     def http_method_not_allowed(self, request, *args, **kwargs):
         return HttpResponse("method is not allowed", status=405)
+
+
+# API Views
+
+
+# Accounts
+class CreateUserView(ModelViewSet):
+    queryset = Members.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (AllowAny,)
+    pagination_class = None
+
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(id=self.request.user.id)
+        return queryset
+
+
+class ProofOfPaymentView(ModelViewSet):
+    queryset = ProofOfPayment.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (IsAuthenticated,)
+    pagination_class = None
+
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(id=self.request.user)
+        return queryset
